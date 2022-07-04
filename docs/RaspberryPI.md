@@ -10,12 +10,12 @@ last edited on 2021-06-24
 A questo punto è possibile collegare un monitor e una tastiera per poter utilizzare il sistema operativo.
 
 ## PREDISPOSIZIONE ALL'USO HEADLESS
-Nel caso non si voglia, o non si possa, utilizzare tastiera, mouse e monitor, è possibile effettuare una configurazione della connessione WIFI seguendo una delle procedure seguenti.
+Nel caso non si voglia, o non si possa, utilizzare tastiera, mouse e monitor, è possibile effettuare una configurazione della connessione Wi-Fi seguendo una delle procedure seguenti.
 
 ### Metodo automatico tramite applicazione _Raspberry PI Imager_
 Il nuovo applicativo _Raspberry PI Imager_ ha una funzionalità (seppur celata) che permette di:
 
-- preconfigurare il WiFI, prelevando automaticamente la configurazione dal sistema operativo 
+- preconfigurare il Wi-Fi, prelevando automaticamente la configurazione dal sistema operativo 
 - abilitare la connessione SSH con login tramite
     - utente pi e password che si può impostare preventivamente
     - utente e chiave ssh configurabile già in questa fase e che viene importata direttamente da quella di default
@@ -24,10 +24,10 @@ Il nuovo applicativo _Raspberry PI Imager_ ha una funzionalità (seppur celata) 
 
 Il tutto è configurabile premendo `CTRL-SHIFT-X` prima di effettuare la scrittura dell'immagine su SD-CARD
 
-### Predisposizione manuale di WiFi e SSH (es per Raspberry PI ZERO)
-Nel caso non si voglia, o non si possa, utilizzare tastiera, mouse e monitor, è possibile effettuare una configurazione della connessione WIFI seguendo la procedura seguente.
+### Predisposizione manuale di Wi-Fi e SSH (es per Raspberry PI ZERO)
+Nel caso non si voglia, o non si possa, utilizzare tastiera, mouse e monitor, è possibile effettuare una configurazione della connessione Wi-Fi seguendo la procedura seguente.
 
-1. inserire la SD-CARD appena configurata nel proprio computer. La formattazione prevede la presenza di una partizione `boot` formattata in FAT32 e leggibile e scrivibile anche da computer con sistema operativo Windows o MacOS
+1. inserire la SD-CARD appena configurata nel proprio computer. La formattazione prevede la presenza di una partizione `boot` formattata in FAT32 e leggibile e scrivibile anche da computer con sistema operativo Windows o macOS
 2. occorre creare un file di configurazione che sarà poi installato nella cartella /etc/wpa_supplicant del SO Raspberry. Il file da creare deve chiamarsi `wpa_supplicant.conf` con il seguente contenuto:
     
     ```sh
@@ -71,8 +71,8 @@ Seguire i seguenti passi:
     sudo raspi-config
     ```
 
-## Istallazione di NODE su Raspberry PI Zero (armv6l)
-Purtroppo i build ufficiali delle ultime versioni di Node non sono compilati per la piattaforma hardware ARM v6 utilizzata su Raspberry PI zero.
+## Istallazione di Node.js su Raspberry PI Zero (armv6l)
+Purtroppo i build ufficiali delle ultime versioni di Node.js non sono compilati per la piattaforma hardware ARM v6 utilizzata su Raspberry PI zero.
 
 Per verificare la piattaforma usare il comando:
 
@@ -80,7 +80,7 @@ Per verificare la piattaforma usare il comando:
 uname -m
 ```
 
-1. scaricare il nodejs compilato per la piattaforma dai [Unofficial builds](https://unofficial-builds.nodejs.org/download/) del sito ufficiale di NodeJS.
+1. scaricare il Node.js compilato per la piattaforma dai [Unofficial builds](https://unofficial-builds.nodejs.org/download/) del sito ufficiale di Node.js.
 Ad esempio il compilato della versione nodejs.14.17.1 per armv6 si trova [qui](https://unofficial-builds.nodejs.org/download/release/v14.17.1/node-v14.17.1-linux-armv6l.tar.xz)
 
    Quindi scaricare il binario tramite il seguente comando
@@ -88,7 +88,7 @@ Ad esempio il compilato della versione nodejs.14.17.1 per armv6 si trova [qui](h
    ```sh
    wget https://unofficial-builds.nodejs.org/download/release/v14.17.1/node-v14.17.1-linux-armv6l.tar.xz
    ```
-2. scompattare l'archivio binario appena scaricato all'interno della cartella nella quale si intende installare Node, ad esempio in `/usr/local/lib/nodejs
+2. scompattare l'archivio binario appena scaricato all'interno della cartella nella quale si intende installare Node.js, ad esempio in `/usr/local/lib/nodejs
 
     ```sh
     sudo mkdir -p /usr/local/lib/nodejs
@@ -113,7 +113,7 @@ Ad esempio il compilato della versione nodejs.14.17.1 per armv6 si trova [qui](h
 
     > *metodo alternativo rispetto al punto precedente*
 
-    __NOTA__: alternativamente al questo metodo è possibile creare dei link simbolici agli applicatidi node, npm e npx direttamente all'interno di /usr/bin. In questo modo tutti gli utenti possono avere accesso a node
+    __NOTA__: alternativamente al questo metodo è possibile creare dei link simbolici agli applicativi node, npm e npx direttamente all'interno di /usr/bin. In questo modo tutti gli utenti possono avere accesso a Node.js
 
     ```
     sudo ln -s /usr/local/lib/nodejs/node-v14.17.1-linux-armv6l/bin/node /usr/bin/node
