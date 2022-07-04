@@ -1,4 +1,5 @@
 ---
+
 # General Settings
 site_name: Alv67 Maker FAQ
 site_url: https://alv67.github.io/maker
@@ -50,7 +51,6 @@ theme:
   #       icon: material/weather-night
   #       name: Switch to dark mode
 
-# 
 # Plugins
 # plugins:
 #   - search
