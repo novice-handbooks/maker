@@ -88,7 +88,7 @@ Ad esempio il compilato della versione nodejs.14.17.1 per armv6 si trova [qui](h
    ```sh
    wget https://unofficial-builds.nodejs.org/download/release/v14.17.1/node-v14.17.1-linux-armv6l.tar.xz
    ```
-2. scompattare l'archivio binario appena scaricato all'interno della cartella nella quale si intende installare Node.js, ad esempio in `/usr/local/lib/nodejs
+2. scompattare l'archivio binario appena scaricato all'interno della cartella nella quale si intende installare Node.js, ad esempio in `/usr/local/lib/nodejs`
 
     ```sh
     sudo mkdir -p /usr/local/lib/nodejs
