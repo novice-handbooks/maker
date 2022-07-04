@@ -2,8 +2,8 @@
 last edited on 2021-06-24
 
 1. Scaricare _Raspberry Pi Imager_ dal sito ufficiale [Raspberry PI](http://www.raspberrypi.org/downloads)
-2. Utilizzando l'applicativo scaricato, selezionare l'immagine del sistema operativo che si vuole installare: nel dubbio scegliere "Raspberry PI OS" 
-   > **NOTA**: in caso si intenda utilizzare in modo HEADLESS (senza monitor e tastiera) e preconfigurare il WiFi, vedere il capitolo dedicato prima di procedere con la creazione dell'immagine. 
+2. Utilizzando l'applicativo scaricato, selezionare l'immagine del sistema operativo che si vuole installare: nel dubbio scegliere "Raspberry PI OS"
+   > **NOTA**: in caso si intenda utilizzare in modo HEADLESS (senza monitor e tastiera) e preconfigurare il WiFi, vedere il capitolo dedicato prima di procedere con la creazione dell'immagine.
 3. Iserire la SD-CARD sul computer e selezionarla dall'applicativo e avviare la scrittura
 4. Inserire l'SD-CARD nel Raspberry PI, accendere ed aspettare fino a completo avvio
 
@@ -15,10 +15,10 @@ Nel caso non si voglia, o non si possa, utilizzare tastiera, mouse e monitor, è
 ### Metodo automatico tramite applicazione _Raspberry PI Imager_
 Il nuovo applicativo _Raspberry PI Imager_ ha una funzionalità (seppur celata) che permette di:
 
-- preconfigurare il Wi-Fi, prelevando automaticamente la configurazione dal sistema operativo 
+- preconfigurare il Wi-Fi, prelevando automaticamente la configurazione dal sistema operativo
 - abilitare la connessione SSH con login tramite
-    - utente pi e password che si può impostare preventivamente
-    - utente e chiave ssh configurabile già in questa fase e che viene importata direttamente da quella di default
+  - utente pi e password che si può impostare preventivamente
+  - utente e chiave ssh configurabile già in questa fase e che viene importata direttamente da quella di default
 - impostare fuso orario e layout tastiera
 - impostare il nome host
 
@@ -29,7 +29,7 @@ Nel caso non si voglia, o non si possa, utilizzare tastiera, mouse e monitor, è
 
 1. inserire la SD-CARD appena configurata nel proprio computer. La formattazione prevede la presenza di una partizione `boot` formattata in FAT32 e leggibile e scrivibile anche da computer con sistema operativo Windows o macOS
 2. occorre creare un file di configurazione che sarà poi installato nella cartella /etc/wpa_supplicant del SO Raspberry. Il file da creare deve chiamarsi `wpa_supplicant.conf` con il seguente contenuto:
-    
+
     ```sh
     ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
     update_config=1
@@ -41,9 +41,9 @@ Nel caso non si voglia, o non si possa, utilizzare tastiera, mouse e monitor, è
         scan_ssid=1
     }
     ```
-    > __NOTA__ : sostituire `ssid` e `psk` con le credenziali della propria rete WiFi
-
-    >__ATTENZIONE__ : non lasciare spazi attorno al simbolo `=` in questo file, il sistema non lo ammette...
+    > **NOTA** : sostituire `ssid` e `psk` con le credenziali della propria rete WiFi
+    >
+    > **ATTENZIONE** : non lasciare spazi attorno al simbolo `=` in questo file, il sistema non lo ammette...
 
 3. copiare il file all'interno della partizione `boot` nell'SD-CARD. Alla prima accensione questo file sarà automaticamente spostato nella cartella dedicata ed utilizzato dal sistema operativo.
 4. Purtroppo di default il sistema Raspbian non attiva il protocollo SSH, ma esiste un modo veloce per farlo: occorre creare un file nominato `SSH` (senza estensione) nella partizione `boot` della SDCARD.
@@ -63,11 +63,11 @@ Seguire i seguenti passi:
    > NOTA : di default la scheda si presenta in rete con hostname `raspberrypi` quindi potrebbe non essere necessario cercare l'IP e provare a raggiungere la scheda all'indirizzo `raspberry.local` (da MacOS o Linux)
 3. Utilizzando un terminale SSH è ora possibile accedere alla console del Raspberry
     user: `pi` password: `raspberry`
-    ```
+    ```sh
     ssh {indirizzo IP | hostname}
     ```
 4. Ora è possibile accedere al menù di configurazione da terminale di Raspbian:
-    ```
+    ```sh
     sudo raspi-config
     ```
 
@@ -98,9 +98,9 @@ Ad esempio il compilato della versione nodejs.14.17.1 per armv6 si trova [qui](h
 
 3. aggiungere il percorso alla variabile d'ambiente PATH. Editale il file `~/.profile` ed aggiungere:
 
-    > *alternativamente è possibile utilizzare il metodo spiegato al punto successivo*
+    > _alternativamente è possibile utilizzare il metodo spiegato al punto successivo_
 
-    ```
+    ```sh
     export PATH=/usr/local/lib/nodejs/node-v14.17.1.linux-armv6l/bin:$PATH
     ```
      riavvia il profilo
@@ -109,13 +109,13 @@ Ad esempio il compilato della versione nodejs.14.17.1 per armv6 si trova [qui](h
     . ~/.profile
     ```
 
- 4. creare i link simbolici
+4. creare i link simbolici
 
-    > *metodo alternativo rispetto al punto precedente*
+    > _metodo alternativo rispetto al punto precedente_
 
-    __NOTA__: alternativamente al questo metodo è possibile creare dei link simbolici agli applicativi node, npm e npx direttamente all'interno di /usr/bin. In questo modo tutti gli utenti possono avere accesso a Node.js
+    **NOTA**: alternativamente al questo metodo è possibile creare dei link simbolici agli applicativi node, npm e npx direttamente all'interno di /usr/bin. In questo modo tutti gli utenti possono avere accesso a Node.js
 
-    ```
+    ```sh
     sudo ln -s /usr/local/lib/nodejs/node-v14.17.1-linux-armv6l/bin/node /usr/bin/node
 
     sudo ln -s /usr/local/lib/nodejs/node-v14.17.1-linux-armv6l/bin/npm /usr/bin/npm
@@ -125,7 +125,7 @@ Ad esempio il compilato della versione nodejs.14.17.1 per armv6 si trova [qui](h
 
 5. test del corretto funzionamento di node, npm  e npx
 
-    ```
+    ```sh
     node -v
     
     npm version
