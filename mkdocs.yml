@@ -1,10 +1,88 @@
+# General Settings
 site_name: Alv67 Maker FAQ
-site_description: 'Collection of FAQ for Electronic Makers'
-site_author: 'Alessandro Varesi'
-docs_dir: docs/
-repo_name: 'alv67/maker'
-repo_url: 'https://github.com/alv67/maker'
+site_url: https://alv67.github.io/maker
+site_description: Collection of FAQ for Electronic Makers
+site_author: Alessandro Varesi
+copyright: Copyright &copy; 2022 Alessandro Varesi
+
+# Repository Settings
+repo_name: alv67/maker
+edit_uri: edit/master/doc
+repo_url: https://github.com/alv67/maker
+remote_branch: gh-pages
+
+docs_dir: doc
+# site_dir: site
+# use_directory_urls: false
+
+# Theming and style
+theme:
+  name: material
+  # custom_dir: doc
+  # features:
+  #   - navigation.instant
+  #   - navigation.tabs
+  #   - navigation.sections
+  # favicon: assets/favicon.png
+  # icon:
+  #   admonition:
+  #     note: octicons/tag-16
+  #     abstract: octicons/checklist-16
+  #     info: octicons/info-16
+  #     tip: octicons/squirrel-16
+  #     success: octicons/check-16
+  #     question: octicons/question-16
+  #     warning: octicons/alert-16
+  #     failure: octicons/x-circle-16
+  #     danger: octicons/zap-16
+  #     bug: octicons/bug-16
+  #     example: octicons/beaker-16
+  #     quote: octicons/quote-16
+
+  # palette:
+  #   # Light mode
+  #   - media: "(prefers-color-scheme: light)"
+  #     scheme: rexroth-light
+  #     primary: indigo
+  #     accent: indigo
+  #     toggle:
+  #       icon: material/weather-night
+  #       name: Switch to dark mode
+
+# 
+# Plugins
+# plugins:
+#   - search
+
+# extra:
+#   social:
+#     - icon: fontawesome/brands/github
+#       link: https://github.com/boschrexroth
+#     - icon: fontawesome/brands/twitter
+#       link: https://twitter.com/boschrexroth
+
+# markdown_extensions:
+#   - admonition
+#   - attr_list
+#   - codehilite
+#   - meta
+#   - toc:
+#       permalink: true
+#   - pymdownx.tabbed
+#   - pymdownx.superfences
+#   - pymdownx.highlight
+#   - pymdownx.inlinehilite
+#   - pymdownx.keys
+#   - attr_list
+#   - pymdownx.highlight:
+#       linenums_style: pymdownx.inline
+#   - pymdownx.caret
+#   - pymdownx.mark
+#   - pymdownx.tilde
+#   - pymdownx.details
+
+
+# Content
+#   create here the navigation tree of the doc
 nav:
     - Home: index.md
-theme:
-  name: 'material'

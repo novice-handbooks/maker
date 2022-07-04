@@ -1,19 +1,35 @@
-name: Publish docs via GitHub Pages
+# This is a workflow to compile docs to Github Pages
+
+name: Mkdocs
+
+# Control when the action will run
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
+  # Allows you to run this workflow manually from the Action tab
+  workflow_dispatch:
+
 jobs:
-  build:
-    name: Deploy docs
+  createdocu:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
-        uses: actions/checkout@v1
-
-      - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - 
+        name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      -
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      -
+        run: pip install mkdocs-material
+      - 
+        run: |
+          ls -alh
+          find samples-*/ -name "*.md" | cpio -pd doc/
+          find samples-*/ -name "*.png" | cpio -pd doc/
+          mkdocs gh-deploy --force
