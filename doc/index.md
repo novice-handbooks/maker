@@ -1,40 +1,10 @@
-## Sample
+# Alv67 Electronic Maker's FAQ
+Documentazione varia su schede elettroniche e la loro programmazione
 
-One more, finally. Or not? :)
+## Raspberry PI
 
-Now:
+- [Installazione Raspberry PI](RaspberryPI.md)
 
-```
-$ some 
-```
+## M5Stack CORE Fire
 
-Look what she said:
-
-> This is it!
-
-### Subtitle
-
-And now this:
-
-- One
-- Two
-- Three
-
-
-#### As well
-
-#### As this
-
-### Another
-
-[a link](https://aws.com)
-
-More?
-
-
-Can we now have `the build`?
-
-NOW!
-
-
-Not gonna work, is it?
+- [Programmazione scheda con Arduino IDE](m5stack.md)
