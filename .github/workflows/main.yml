@@ -1,3 +1,4 @@
+---
 # This is a workflow to compile docs to Github Pages
 
 name: Mkdocs
@@ -5,9 +6,9 @@ name: Mkdocs
 # Control when the action will run
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
   # Allows you to run this workflow manually from the Action tab
   workflow_dispatch:

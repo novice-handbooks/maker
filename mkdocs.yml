@@ -1,3 +1,4 @@
+---
 # General Settings
 site_name: Alv67 Maker FAQ
 site_url: https://alv67.github.io/maker
@@ -85,4 +86,4 @@ theme:
 # Content
 #   create here the navigation tree of the doc
 nav:
-    - Home: index.md
+  - Home: index.md
