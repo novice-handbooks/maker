@@ -1,4 +1,5 @@
 # M5Stack Core
+
 last edited on 2022-05-01
 
 M5Stack (<https://m5stack.com>) progetta e produce kit di sviluppo open-source, incluso hardware, piattaforma di programmazione e soluzioni IoT.
@@ -24,9 +25,11 @@ Partiamo dalla guida ufficiale: [Arduino IDE environment - M5Core](https://docs.
    globale.
 
 4. Eseguire la **versione 1.8.x** e, seguendo le istruzioni copiare tra gli _URL per la gestione di schede addizionali_:
+
    ```txt
    https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/arduino/package_m5stack_index.json
    ```
+
    ![gestione schede aggiuntive](./images/arduino-gestore-schede-aggiuntive.png)
 
 5. E' ora possibile installare le schede _M5Stack_ nella configurazione del _Gestore schede_
@@ -42,6 +45,7 @@ Partiamo dalla guida ufficiale: [Arduino IDE environment - M5Core](https://docs.
    - M5GFX (0.0.20)
 
 7. Preparare sketch di test :
+
    ```c
    #include <M5Stack.h>
 
