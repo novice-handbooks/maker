@@ -132,3 +132,27 @@ deconz:
 ```
 
 dove ovviamente nel campo `devices` occorre indicare la porta precedentemente identificata (nell'esempio precedente `ttyACM0`)
+
+Una volta salvato il file eseguire il comando:
+
+```sh
+docker compose up -d deconz
+```
+
+Lanciato il comando, attendere il completamente del primo avvio. Ci potrebbe volere un po’: per leggere in tempo reale i log e verificare quindi cosa stia succedendo all’interno del container, eseguire il comando:
+
+```sh
+docker container logs deconz -f
+```
+
+in fondo al log dovremmo trovare qualcosa come:
+
+```text
+[deconzcommunity/deconz] Starting deCONZ...
+[deconzcommunity/deconz] Current deCONZ version: x.xx.xx
+[deconzcommunity/deconz] Web UI port: 40850
+[deconzcommunity/deconz] Websockets port: 443
+[deconzcommunity/deconz] VNC port: 40851
+```
+
+Congratulazioni: deCONZ è ora operativo.
