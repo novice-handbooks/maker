@@ -20,7 +20,115 @@ Per non dovermi dotare di singoli BRIDGE delle varie marche, opto per la creazio
 
 Tra le varie alternative, è il caso di **deCONZ**, oggetto della presente guida, componente software che consente per l’appunto di dotarsi gratuitamente di un BRIDGE/Gateway evoluto per la gestione della propria rete ZigBee: una volta installato, tale BRIDGE/Gateway espone delle API per instradare i messaggi da e per i componenti ZigBee tramite esso gestiti.
 
-A questo scopo occorre anche dotarsi di un dispositivo _ZigBee Coordinator (antenna)_.
+### ZigBee Coordinator (antenna)
+
+Per far funzionare il BRIDGE/Gateway occorre anche dotarsi di un dispositivo _ZigBee Coordinator (antenna)_.
 Io ho optato per un dispositivo USB molto consigliato dalla comunità : [ConBee II](https://www.phoscon.de/en/conbee2)
 
 Per quanto riguarda l'installazione di **deCONZ** ho optato per l'installazione in un _container docker_.
+
+> **N.B.** Si consiglia, di utilizzare delle _mini prolunghe USB_ per collegare sulla porta USB del Raspberry Pi l'antenna ConBee. Questo per evitare più che accertate interferenze.
+
+#### **Aggiunta di ulteriori porte seriali**
+
+Dato che il Raspberry dispone di due porte seriali, ma una è disabilitata di default, installando l'antenna potrebbe smettere di funaionare il modulo Bluetooth o non essere riconosciuta l'antenna stessa. Per evitare ciò occorre effettuare una modifica al file `config.txt` presente nella root della scheda Micro SD.
+
+```sh
+sudo nano /boot/config.txt
+```
+
+La modifica da fare prevede l’aggiunta, in fondo al file, del seguente codice (avere cura di aggiungere una riga vuota dopo le due righe di codice):
+
+```text
+enable_uart=1
+dtoverlay=pi3-disable-bt
+```
+
+uscire e salvare (`Ctrl-X`, `Y`, `invio`), e infine spegnere il Raspberry Pi con:
+
+```sh
+sudo shutdown now
+```
+
+Completato lo _shutdown_, spegnere **fisicamente** l'unità per poi riaccenderla subito dopo.
+
+#### **Installazione del modulo ConBee II**
+
+Dopo aver inserito il modulo d'antenna su di una porta USB ed avvere riavviato il Raspberry Pi occorre effettuare _una verifica_ per appurare che la porta logica sia stata assegnata all'antenna dal sistema operativo.
+
+Per fare questo prepariamo un semplice script per elencare le interfacce hardware in uso.
+
+Collegandosi al Raspberry tramite SSH creare lo script:
+
+```sh
+sudo nano ports.sh
+```
+
+e copiare all'interno dell'editor il seguente codice:
+
+```bash
+#!/bin/bash
+
+for sysdevpath in $(find /sys/bus/usb/devices/usb*/ -name dev); do
+    (
+        syspath="${sysdevpath%/dev}"
+        devname="$(udevadm info -q name -p $syspath)"
+        [[ "$devname" == "bus/"* ]]
+        eval "$(udevadm info -q property --export -p $syspath)"
+        [[ -z "$ID_SERIAL" ]]
+        echo "/dev/$devname - $ID_SERIAL"
+    )
+done
+```
+
+uscire e salvare (`Ctrl-X`, `Y`, `invio`).
+Eseguire poi i comandi:
+
+```sh
+sudo chmod 777 ports.sh
+./ports.sh
+```
+
+A questo punto lo script è eseguito ottenendo un output simile al seguente:
+
+```sh
+/dev/bus/usb/001/001 - Linux_6.1.21-v8+_dwc_otg_hcd_DWC_OTG_Controller_3f980000.usb
+/dev/bus/usb/001/003 - 0424_ec00
+/dev/bus/usb/001/002 - 0424_9514
+/dev/ttyACM0 - dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2685810
+/dev/bus/usb/001/005 - dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2685810
+```
+
+Questo elenco riporta tutte le interfacce allocate. La prima parte è l’allocazione logica assegnata dal sistema operativo (eg. /dev/bus/usb/001/001) mentre la seconda l’etichetta descrittiva del device.
+
+Ovviamente bisognerà autonomamente capire quale sia quella che ci interessa utilizzare.
+
+> **N.B.** Nell’esempio di cui sopra si nota una duplicazione della voce “dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2685810“. Questo perché viene elencato sia l’indirizzo della porta al quale è fisicamente connesso il device USB (/dev/bus/usb/001/005) sia l’indirizzo alias logico (/dev/ttyACM0). Si consiglia di utilizzare sempre quest’ultimo tipo di indirizzamento piuttosto che il primo, e il motivo è semplice: in caso di cambio di porta, l’alias logico non cambia mai (evitando quindi problemi di configurazione sui software che utilizzino i device in questione.
+
+### Instanziare deCONZ
+
+Prerequisito principale è avere installato `docker` sul Raspberry Pi.
+
+Si sceglie di utilizzare `docker compose` in tal modo tutta la configurazione viene registrata all'interno del file `docker-compose.yaml` assieme agli altri container definiti (ad esempio il container di Home Asssistant).
+
+Al file `docker-compose.yaml` aggiungere la seguente configurazione (sotto il blocco _services_):
+
+```yaml
+deconz:
+    container_name: deconz
+    image: deconzcommunity/deconz
+    volumes:
+    - "/opt/deconz:/root/.local/share/dresden-elektronik/deCONZ"
+    devices:
+    - "/dev/ttyXXX"
+    environment:
+    - "TZ=Europe/Rome"
+    - "DECONZ_WEB_PORT=40850"
+    - "DECONZ_VNC_MODE=1"
+    - "DECONZ_VNC_PORT=40851"
+    - "DECONZ_VNC_PASSWORD=mia_password"
+    network_mode: host
+    restart: always
+```
+
+dove ovviamente nel campo `devices` occorre indicare la porta precedentemente identificata (nell'esempio precedente `ttyACM0`)
