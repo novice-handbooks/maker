@@ -1,4 +1,4 @@
-# RASPBERRY PI - Una guida ll'uso
+# RASPBERRY PI - Una guida all'uso
 
 ## INSTALLAZIONE RASPBERRY PI (_Da aggiornare_)
 
