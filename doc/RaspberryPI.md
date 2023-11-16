@@ -1,4 +1,4 @@
-# RASPBERRY PI - Una guida ll'uso
+# RASPBERRY PI - Una guida all'uso
 
 ## INSTALLAZIONE RASPBERRY PI (_Da aggiornare_)
 
@@ -6,7 +6,7 @@ last edited on 2021-06-24
 
 1. Scaricare _Raspberry Pi Imager_ dal sito ufficiale [Raspberry PI](http://www.raspberrypi.org/downloads)
 2. Utilizzando l'applicativo scaricato, selezionare l'immagine del sistema operativo che si vuole installare: nel dubbio scegliere "Raspberry PI OS"
-   > **NOTA**: in caso si intenda utilizzare in modo HEADLESS (senza monitor e tastiera) e preconfigurare il WiFi, vedere il capitolo dedicato prima di procedere con la creazione dell'immagine.
+   > **NOTA**: in caso si intenda utilizzare in modo HEADLESS (senza monitor e tastiera) e preconfigurare il Wi-Fi, vedere il capitolo dedicato prima di procedere con la creazione dell'immagine.
 3. Iserire la SD-CARD sul computer e selezionarla dall'applicativo e avviare la scrittura
 4. Inserire l'SD-CARD nel Raspberry PI, accendere ed aspettare fino a completo avvio
 
@@ -48,7 +48,7 @@ Nel caso non si voglia, o non si possa, utilizzare tastiera, mouse e monitor, è
     }
     ```
 
-    > **NOTA** : sostituire `ssid` e `psk` con le credenziali della propria rete WiFi
+    > **NOTA** : sostituire `ssid` e `psk` con le credenziali della propria rete Wi-Fi
     >
     > **ATTENZIONE** : non lasciare spazi attorno al simbolo `=` in questo file, il sistema non lo ammette...
 
@@ -139,7 +139,7 @@ Il servizio VNC si abilita con la voce di menù qui definita.
 Qui è possibile personalizzare la localizzazione in lingua del prodotto.
 Se non fatto durante l'installazione è qui possibile configurare il
 layout di tastiera, la Timezone per l'ora e la nazione per le regole di
-trasmissione del WiFi.
+trasmissione del Wi-Fi.
 
    > **ATTENZIONE** : è consigliato invece mantenere la lingua del sistema al
    valore di default: `English` in quanto tutte le procedure fanno riferimento
