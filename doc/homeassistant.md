@@ -103,7 +103,10 @@ Questo elenco riporta tutte le interfacce allocate. La prima parte è l’alloca
 
 Ovviamente bisognerà autonomamente capire quale sia quella che ci interessa utilizzare.
 
-> **N.B.** Nell’esempio di cui sopra si nota una duplicazione della voce “dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2685810“. Questo perché viene elencato sia l’indirizzo della porta al quale è fisicamente connesso il device USB (/dev/bus/usb/001/005) sia l’indirizzo alias logico (/dev/ttyACM0). Si consiglia di utilizzare sempre quest’ultimo tipo di indirizzamento piuttosto che il primo, e il motivo è semplice: in caso di cambio di porta, l’alias logico non cambia mai (evitando quindi problemi di configurazione sui software che utilizzino i device in questione.
+> **N.B.**
+> Nell’esempio di cui sopra si nota una duplicazione della voce “dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2685810“.
+> Questo perché viene elencato sia l’indirizzo della porta al quale è fisicamente connesso il device USB (/dev/bus/usb/001/005) sia l’indirizzo alias logico (/dev/ttyACM0).
+> Si consiglia di utilizzare sempre quest’ultimo tipo di indirizzamento piuttosto che il primo, e il motivo è semplice: in caso di cambio di porta, l’alias logico non cambia mai, evitando quindi problemi di configurazione sui software che utilizzino i device in questione.
 
 ### Instanziare deCONZ
 
