@@ -212,3 +212,35 @@ reboot
 
 Accedere all'interfaccia web all'indirizzo : [https://192.168.1.180:8006](https://192.168.1.180:8006) oppure
 [https://raspi5.local:8006](https://raspi5.local:8006)
+
+
+<!-- TODOs - argomenti da aggiungere ed espandere
+
+1. gestire i backup delle VM e delle CT
+   - shared Storage 
+      aggiunta di storage NFS per l'archiviazione esterna dei backup
+   - attivare la cache locale per la creazione del backup
+      `nano /etc/vzdump.conf`
+
+      ```
+      # vzdump default settings
+      tmpdir: /tmp
+      #dumpdir: DIR
+      #storage: STORAGE_ID
+      ...
+      ```
+2. rendere visibili le VM/CT come [hostname].local sulla propria rete locale:
+   - install `avahi-daemon` package
+
+3. [Pimox scripts](https://pimox-scripts.com/) 
+   Proxmox arm64 Install Scripts
+
+4. Accorgimenti per far funzionare le VM arm64 anche desktop mode:
+   - bios : OVMF (UEFI)
+   - initial DVD:SCSI / HD : SATA
+   - then NO DVD / HD (detach + reattach as SCSI0)
+   - Boot order (always to check)
+   - (some time with no display)
+   - if hangs on STOP or SHUTDOWN use "Monitor" then QUIT
+
+-->
