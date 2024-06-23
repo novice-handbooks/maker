@@ -264,4 +264,13 @@ A. allargare la dimensione dello SWAP file:
    - (some time with no display)
    - if hangs on STOP or SHUTDOWN use "Monitor" then QUIT
 
+5. Aggiustare DNS all'interno di CT (basate su debian 12)
+   #- verifica DNS : `resolvectl status`
+   #- modifica file `/etc/systemd/resolved.conf` con `DNS=8.8.8.8 1.1.1.1`
+   #- riavvia il servizio `sudo systemctl restart systemd-resolved`
+   - verifica dns : `cat /etc/resolv.conf`
+   - modifica il file con `nameserver 8.8.8.8`
+   - riavvia il servizio `sudo systemctl restart systemd-resolved`
+
+
 -->
