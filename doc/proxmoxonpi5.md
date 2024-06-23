@@ -216,6 +216,27 @@ Accedere all'interfaccia web all'indirizzo : [https://192.168.1.180:8006](https:
 
 <!-- TODOs - argomenti da aggiungere ed espandere
 
+A. allargare la dimensione dello SWAP file:
+   `sudo dphys-swapfile swapoff`
+
+   edit /etc/dphys-swapfile
+
+   ```
+   CONF_SWAPSIZE=8000
+   ```
+
+   Riavviare servizio
+
+   ```
+   sudo dphys-swapfile setup
+   sudo dphys-swapfile swapon
+   ```
+
+   verificare `sudo swapon --show`
+   
+
+
+
 1. gestire i backup delle VM e delle CT
    - shared Storage 
       aggiunta di storage NFS per l'archiviazione esterna dei backup
