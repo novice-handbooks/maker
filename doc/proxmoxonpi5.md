@@ -272,5 +272,27 @@ A. allargare la dimensione dello SWAP file:
    - modifica il file con `nameserver 8.8.8.8`
    - riavvia il servizio `sudo systemctl restart systemd-resolved`
 
+6. montare un disco esterno su proxmox
+   - creare la cartella per il punto di mount: `mkdir /media/wdbackup`
+   - editare il file `/etc/fstab` ed aggiungere per esempio per una connessione SMB/cifs:
+   ```
+   //192.168.1.249/WDBackup /media/wdbackup cifs rw,relatime,cache=strict,username=root,password=pass,uid=0,noforceuid,gid=0,noforcegid,noauto,x-systemd.automount,netdev 0 0 
+   ```
+   questo dovrebbe montare in /media/wdbackup la condivisione WDBackup dal server 192.268.1.249, nota che in questo caso
+   seppur la condivisione fosse senza guest viene comunque usato un fake user e password
 
+7. condividere cartelle o mount da Proxmox host verso CT
+   - per effettuare la condivisione di cartella (bindmount) eseguire il comando:
+   ```
+   pct set 504 -mp0 /media/wdbackup,mp=/media/wdbackup
+   ```
+   in questo caso viene condivisa la cartella /media/wdbackup sulla CT in /media/wdbackup con is mp0.
+   ATTENZIONE: la CT deve essere definita "priviledged" altrimenti è impossibile utilizzare la cartella in scrittura.
+
+8. convertire una CT da unpriviledged to priviledged o viceversa
+   Effettuare backup della CT
+   Effettuare il restore scegliendo l'opzione scelta.
+
+
+   
 -->
