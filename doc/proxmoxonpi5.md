@@ -214,9 +214,9 @@ Accedere all'interfaccia web all'indirizzo : [https://192.168.1.180:8006](https:
 [https://raspi5.local:8006](https://raspi5.local:8006)
 
 
-<!-- TODOs - argomenti da aggiungere ed espandere
+## -- TODOs - argomenti da aggiungere ed espandere
 
-A. allargare la dimensione dello SWAP file:
+### A. allargare la dimensione dello SWAP file:
    `sudo dphys-swapfile swapoff`
 
    edit /etc/dphys-swapfile
@@ -237,7 +237,7 @@ A. allargare la dimensione dello SWAP file:
 
 
 
-1. gestire i backup delle VM e delle CT
+### 1. gestire i backup delle VM e delle CT
    - shared Storage 
       aggiunta di storage NFS per l'archiviazione esterna dei backup
    - attivare la cache locale per la creazione del backup
@@ -250,13 +250,13 @@ A. allargare la dimensione dello SWAP file:
       #storage: STORAGE_ID
       ...
       ```
-2. rendere visibili le VM/CT come [hostname].local sulla propria rete locale:
+### 2. rendere visibili le VM/CT come [hostname].local sulla propria rete locale:
    - install `avahi-daemon` package
 
-3. [Pimox scripts](https://pimox-scripts.com/) 
+### 3. [Pimox scripts](https://pimox-scripts.com/) 
    Proxmox arm64 Install Scripts
 
-4. Accorgimenti per far funzionare le VM arm64 anche desktop mode:
+### 4. Accorgimenti per far funzionare le VM arm64 anche desktop mode:
    - bios : OVMF (UEFI)
    - initial DVD:SCSI / HD : SATA
    - then NO DVD / HD (detach + reattach as SCSI0)
@@ -264,7 +264,7 @@ A. allargare la dimensione dello SWAP file:
    - (some time with no display)
    - if hangs on STOP or SHUTDOWN use "Monitor" then QUIT
 
-5. Aggiustare DNS all'interno di CT (basate su debian 12)
+### 5. Aggiustare DNS all'interno di CT (basate su debian 12)
    #- verifica DNS : `resolvectl status`
    #- modifica file `/etc/systemd/resolved.conf` con `DNS=8.8.8.8 1.1.1.1`
    #- riavvia il servizio `sudo systemctl restart systemd-resolved`
@@ -272,7 +272,7 @@ A. allargare la dimensione dello SWAP file:
    - modifica il file con `nameserver 8.8.8.8`
    - riavvia il servizio `sudo systemctl restart systemd-resolved`
 
-6. montare un disco esterno su proxmox
+### 6. montare un disco esterno su proxmox
    - creare la cartella per il punto di mount: `mkdir /media/wdbackup`
    - editare il file `/etc/fstab` ed aggiungere per esempio per una connessione SMB/cifs:
    ```
@@ -281,7 +281,7 @@ A. allargare la dimensione dello SWAP file:
    questo dovrebbe montare in /media/wdbackup la condivisione WDBackup dal server 192.268.1.249, nota che in questo caso
    seppur la condivisione fosse senza guest viene comunque usato un fake user e password
 
-7. condividere cartelle o mount da Proxmox host verso CT
+### 7. condividere cartelle o mount da Proxmox host verso CT
    - per effettuare la condivisione di cartella (bindmount) eseguire il comando:
    ```
    pct set 504 -mp0 /media/wdbackup,mp=/media/wdbackup
@@ -289,10 +289,73 @@ A. allargare la dimensione dello SWAP file:
    in questo caso viene condivisa la cartella /media/wdbackup sulla CT in /media/wdbackup con is mp0.
    ATTENZIONE: la CT deve essere definita "priviledged" altrimenti è impossibile utilizzare la cartella in scrittura.
 
-8. convertire una CT da unpriviledged to priviledged o viceversa
+### 8. convertire una CT da unpriviledged to priviledged o viceversa
    Effettuare backup della CT
    Effettuare il restore scegliendo l'opzione scelta.
 
+### 9. Creare una partizione LVM-Thin partendo da un disco full ext4
+   - usare `parted` per ridurre la partizione esistente. 
+      Si consiglia un backup totale. Inoltre si consiglia di 
+      accertarsi dello spazio attualmente utilizzato nella partizione
+      che si intende ridimensionare: a tale scopo può tornare utile
+      il comando `df -h`
+      
+      Eseguire parted sul volume principale
+      `parted /dev/nvme0n1` 
+      
+      Dal prompt (parted) eseguire il comando `print` per verificare 
+      le attuali partizioni
 
-   
--->
+      ```
+      (parted) print
+      Model: CT500P3SSD8 (nvme)
+      Disk /dev/nvme0n1: 500GB
+      Sector size (logical/physical): 512B/512B
+      Partition Table: msdos
+      Disk Flags: 
+
+      Number  Start   End    Size   Type     File system  Flags
+      1      4194kB  541MB  537MB  primary  fat32        lba
+      2      541MB   165GB  164GB  primary  ext4
+      ```
+      Ricordarsi il numero della partizione da restringere.
+
+      Tenendo conto dell'attuale utilizzo della partizione da restringere 
+      eseguire il comando seguente indicando la percentuale di 
+      partizione che si intende mantenere
+
+      ```
+      (parted) resizepart 2 33%
+      ```
+
+      Al termine è possibile verificare la quantità di disco libero
+      con il comando
+      ```
+      (parted) print free
+      ```
+
+      Usare `q` per uscire dal prompt (parted)
+
+   - usare `fdisk` per creare la nuova partizione di tipo LVM
+
+      Si procede alla creazione della nuova partizione sfruttando
+      lo spazio liberato.
+
+      `fdisk /dev/nvme0n1` per entrare nell'utility di formattazione
+
+      `F` per visualizzare gli spazi non partizionati. Potrebbero
+      essere listati più spazi in quanto spesso per questioni di allineamento
+      rimangono anche piccoli spazi disco non partizionabili.
+      Appuntarsi i valori di _Start_ ed _End_ dello spazio che
+      si deve utilizzare.
+
+      `n` creare la nuova partizione: tipo _primary_, numero della
+      partizione e start e end appuntati precedentemente.
+
+      `t` per cambiare il formato della partizione in `8e` LVM
+
+      `w` scrive le modifiche su disco (con `q` si esce senza modificare)
+
+      
+
+<!-- END -->
