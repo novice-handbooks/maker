@@ -1,7 +1,7 @@
 # Installa Proxmox 8 su Rasperry Pi 5
 
 Normalmente Proxmox viene installato tramite immagine dedicata. Non essendo prevista ancora una immagine
-ufficiale dedicata al Rapberri Pi 5, si procede con l'installazione nativa su Raspberry OS.
+ufficiale dedicata al Rapberry Pi 5, si procede con l'installazione nativa su Raspberry OS.
 
 La procedura, in alcuni momenti, prevede l'accesso diretto alla scheda Pi 5.
 Si consiglia di utilizzare il sistema operativo Raspberry OS in versione lite (no desktop) ed installato
