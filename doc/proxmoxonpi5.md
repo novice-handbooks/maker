@@ -294,47 +294,14 @@ Accedere all'interfaccia web all'indirizzo : [https://192.168.1.180:8006](https:
    Effettuare il restore scegliendo l'opzione scelta.
 
 ### 9. Creare una partizione LVM-Thin partendo da un disco full ext4
-   - usare `parted` per ridurre la partizione esistente. 
-      Si consiglia un backup totale. Inoltre si consiglia di 
-      accertarsi dello spazio attualmente utilizzato nella partizione
-      che si intende ridimensionare: a tale scopo può tornare utile
-      il comando `df -h`
-      
-      Eseguire parted sul volume principale
-      `parted /dev/nvme0n1` 
-      
-      Dal prompt (parted) eseguire il comando `print` per verificare 
-      le attuali partizioni
+   - Occorre ridurre la partizione esistente: la soluzione più indolore è quella di riavviare il Raspberry utilizzando 
+     la scheda SD si boot (Raspian OS 64bit) 
+   
+     Installare il pacchetto "Partition Manager KDE" (o in alternativa GParted)
+     Tramite l'interfaccia grafica e facile effettuare la riduzione della partizione.
+     Nel mio caso ho scelto di lasciare 125GB (128000MB) come pertizione ext4.
 
-      ```
-      (parted) print
-      Model: CT500P3SSD8 (nvme)
-      Disk /dev/nvme0n1: 500GB
-      Sector size (logical/physical): 512B/512B
-      Partition Table: msdos
-      Disk Flags: 
-
-      Number  Start   End    Size   Type     File system  Flags
-      1      4194kB  541MB  537MB  primary  fat32        lba
-      2      541MB   165GB  164GB  primary  ext4
-      ```
-      Ricordarsi il numero della partizione da restringere.
-
-      Tenendo conto dell'attuale utilizzo della partizione da restringere 
-      eseguire il comando seguente indicando la percentuale di 
-      partizione che si intende mantenere
-
-      ```
-      (parted) resizepart 2 33%
-      ```
-
-      Al termine è possibile verificare la quantità di disco libero
-      con il comando
-      ```
-      (parted) print free
-      ```
-
-      Usare `q` per uscire dal prompt (parted)
+     Procedere salvando la nuova partizione e riavviando il sistema senza la scheda SD.
 
    - usare `fdisk` per creare la nuova partizione di tipo LVM
 
