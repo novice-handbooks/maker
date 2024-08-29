@@ -242,6 +242,17 @@ Accedere all'interfaccia web all'indirizzo : [https://192.168.1.180:8006](https:
 ### 1. gestire i backup delle VM e delle CT
    - shared Storage 
       aggiunta di storage NFS per l'archiviazione esterna dei backup
+      1. Preparare la condivisione NFS su Synology vedere [qui](https://www.youtube.com/watch?v=EMQdN6W_y1Y)
+      2. `Datacenter/Storage/Add: NFS`
+      3. Configurare
+         ```
+         ID: SynoNFS
+         Server: 192.168.1.250
+         Export: /volume1/proxmox
+         Content: Disk image, ISO image, Container template, VZDump backup file, Container
+         ```
+         --> `Add`
+     
    - attivare la cache locale per la creazione del backup
       `nano /etc/vzdump.conf`
 
