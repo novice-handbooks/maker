@@ -223,6 +223,8 @@ Accedere all'interfaccia web all'indirizzo : [https://192.168.1.180:8006](https:
 
    ```
    CONF_SWAPSIZE=8000
+
+   CONF_MAXSWAP=8000
    ```
 
    Riavviare servizio
