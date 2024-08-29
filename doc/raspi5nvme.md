@@ -38,4 +38,41 @@ In linea di massima si consiglia di seguire le seguenti operazioni:
 3. Inserire la microSD nella Pi 5 e assicurarsi inoltre di avere inserito anche la memoria NVMe.
 4. Avviare il Raspberry Pi 5 da microSD. Da applicazione Desktop assicurarsi di avere a disposizione l'applicativo _Raspberry Pi Imager_
 5. Utilizzare _Raspberry Pi Imager_ da desktop su Pi 5 per programmare la memoria NVMe con il sistema operativo scelto.
+
+   > Nota
+   >
+   > tramite _Raspberry Pi Imager_ è possibile predisporre alcune personalizzazioni
+   > per il sistema, consiglio di:
+   > - impostare username e password
+   > - settare rete WiFi
+   > - abilitare il servizio SSH per l'accesso remoto
+   > - impostare timezone e layout tastiera
+
 6. Accertarsi che al prossimo riavvio il sistema utilizzi NVMe come boot disk: da terminale lanciare `sudo raspi-config`, poi da menu `Advanced Options` -> `Boot Order`. Qui assicurarsi di utilizzare una opzione che permetta il boot da NVMe/USB in assenza di microSD (nel mio caso è la selezione di default).
+
+L'installazione non è completata: al primo avvio parte una
+procedura di installazione e configurazione che utilizzerà
+tutto il disco,e effettuerà tutte le configurazioni iniziali.
+
+Una volta terminata la procedura si presenta il terminale per poter effettuare login.
+
+### Riduzione della partizione esistente.
+
+Se l'SSD utilizzato ha una dimensione sufficiente è consigliato ridurre la partizione principale
+permettendo così di formattare una parte dell'SSD con filesystem più
+opportuni, ad esempio per creare una partizione LVM utile per ottenere
+una allocazione dinamica dei volumi.
+
+Per effettuare la riduzione della partizione in modo indolore è consigliato effettuarlo con partizione non montata. 
+Questo è impossibile bootstrappando da SSD, quindi andremo a
+riavviare il Raspberry utilizzando la scheda SD utilizzata in fase di
+installazione.
+
+Installare il pacchetto "Partition Manager KDE" (o in alternativa GParted)
+
+Tramite l'interfaccia grafica e facile effettuare la riduzione della partizione.
+In questo modo lasceremo dello spazio non partizionato che potremo utilizzare di seguito in base alle esigenze. 
+
+Nel mio caso ho scelto di mantenere 125GB (128000MB) come pertizione ext4.
+
+Procedere salvando la nuova partizione e riavviando il sistema senza la scheda SD.
