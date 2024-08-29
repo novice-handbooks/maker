@@ -296,16 +296,16 @@ Accedere all'interfaccia web all'indirizzo : [https://192.168.1.180:8006](https:
    Effettuare il restore scegliendo l'opzione scelta.
 
 ### 9. Creare una partizione LVM-Thin partendo da un disco full ext4
-   - Occorre ridurre la partizione esistente: la soluzione più indolore è quella di riavviare il Raspberry utilizzando 
-     la scheda SD si boot (Raspian OS 64bit) 
+    - Occorre ridurre la partizione esistente: la soluzione più indolore è quella di riavviare il Raspberry utilizzando 
+      la scheda SD si boot (Raspian OS 64bit) 
    
-     Installare il pacchetto "Partition Manager KDE" (o in alternativa GParted)
-     Tramite l'interfaccia grafica e facile effettuare la riduzione della partizione.
-     Nel mio caso ho scelto di lasciare 125GB (128000MB) come pertizione ext4.
+      Installare il pacchetto "Partition Manager KDE" (o in alternativa GParted)
+      Tramite l'interfaccia grafica e facile effettuare la riduzione della partizione.
+      Nel mio caso ho scelto di lasciare 125GB (128000MB) come pertizione ext4.
 
-     Procedere salvando la nuova partizione e riavviando il sistema senza la scheda SD.
+      Procedere salvando la nuova partizione e riavviando il sistema senza la scheda SD.
 
-   - usare `fdisk` per creare la nuova partizione di tipo LVM
+    - usare `fdisk` per creare la nuova partizione di tipo LVM
 
       Si procede alla creazione della nuova partizione sfruttando
       lo spazio liberato.
@@ -324,6 +324,14 @@ Accedere all'interfaccia web all'indirizzo : [https://192.168.1.180:8006](https:
       `t` per cambiare il formato della partizione in `8e` LVM
 
       `w` scrive le modifiche su disco (con `q` si esce senza modificare)
+
+    - creazione del "Thinpool"
+      Da interfaccia web, selezionare la voce `Disks\LVM-Thin` del nodo.
+      Selezionare la voce `Create:Thinpool` e da popup configurare:
+          - Disk: selezionata in automatico la partizione formattata in LVM
+          - Name: local-lvm
+          - Add Storage: selezionato
+      
 
       
 
