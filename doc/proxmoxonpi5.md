@@ -213,15 +213,15 @@ reboot
 Accedere all'interfaccia web all'indirizzo : [https://192.168.1.180:8006](https://192.168.1.180:8006) oppure
 [https://raspi5.local:8006](https://raspi5.local:8006)
 
-
 ## -- TODOs - argomenti da aggiungere ed espandere
 
-### A. allargare la dimensione dello SWAP file:
+### A. allargare la dimensione dello SWAP file
+
    `sudo dphys-swapfile swapoff`
 
    edit /etc/dphys-swapfile
 
-   ```
+   ```text
    CONF_SWAPSIZE=8000
 
    CONF_MAXSWAP=8000
@@ -229,114 +229,121 @@ Accedere all'interfaccia web all'indirizzo : [https://192.168.1.180:8006](https:
 
    Riavviare servizio
 
-   ```
+   ```text
    sudo dphys-swapfile setup
    sudo dphys-swapfile swapon
    ```
 
    verificare `sudo swapon --show`
-   
-
-
 
 ### 1. gestire i backup delle VM e delle CT
-   - shared Storage 
-      aggiunta di storage NFS per l'archiviazione esterna dei backup
-      1. Preparare la condivisione NFS su Synology vedere [qui](https://www.youtube.com/watch?v=EMQdN6W_y1Y)
-      2. `Datacenter/Storage/Add: NFS`
-      3. Configurare
-         ```
-         ID: SynoNFS
-         Server: 192.168.1.250
-         Export: /volume1/proxmox
-         Content: Disk image, ISO image, Container template, VZDump backup file, Container
-         ```
-         --> `Add`
-     
-   - attivare la cache locale per la creazione del backup
-      `nano /etc/vzdump.conf`
 
-      ```
-      # vzdump default settings
-      tmpdir: /tmp
-      #dumpdir: DIR
-      #storage: STORAGE_ID
-      ...
-      ```
-### 2. rendere visibili le VM/CT come [hostname].local sulla propria rete locale:
-   - install `avahi-daemon` package
+- shared Storage
+   aggiunta di storage NFS per l'archiviazione esterna dei backup
+   1. Preparare la condivisione NFS su Synology vedere [qui](https://www.youtube.com/watch?v=EMQdN6W_y1Y)
+   2. `Datacenter/Storage/Add: NFS`
+   3. Configurare
 
-### 3. [Pimox scripts](https://pimox-scripts.com/) 
+      ```text
+      ID: SynoNFS
+      Server: 192.168.1.250
+      Export: /volume1/proxmox
+      Content: Disk image, ISO image, Container template, VZDump backup file, Container
+      ```
+
+      --> `Add`
+
+- attivare la cache locale per la creazione del backup
+   `nano /etc/vzdump.conf`
+
+   ```text
+   # vzdump default settings
+   tmpdir: /tmp
+   #dumpdir: DIR
+   #storage: STORAGE_ID
+   ...
+   ```
+
+### 2. rendere visibili le VM/CT come [hostname].local sulla propria rete locale
+
+- install `avahi-daemon` package
+
+### 3. [Pimox scripts](https://pimox-scripts.com/)
+
    Proxmox arm64 Install Scripts
 
-### 4. Accorgimenti per far funzionare le VM arm64 anche desktop mode:
-   - bios : OVMF (UEFI)
-   - initial DVD:SCSI / HD : SATA
-   - then NO DVD / HD (detach + reattach as SCSI0)
-   - Boot order (always to check)
-   - (some time with no display)
-   - if hangs on STOP or SHUTDOWN use "Monitor" then QUIT
+### 4. Accorgimenti per far funzionare le VM arm64 anche desktop mode
+
+- bios : OVMF (UEFI)
+- initial DVD:SCSI / HD : SATA
+- then NO DVD / HD (detach + reattach as SCSI0)
+- Boot order (always to check)
+- (some time with no display)
+- if hangs on STOP or SHUTDOWN use "Monitor" then QUIT
 
 ### 5. Aggiustare DNS all'interno di CT (basate su debian 12)
-   #- verifica DNS : `resolvectl status`
-   #- modifica file `/etc/systemd/resolved.conf` con `DNS=8.8.8.8 1.1.1.1`
-   #- riavvia il servizio `sudo systemctl restart systemd-resolved`
-   - verifica dns : `cat /etc/resolv.conf`
-   - modifica il file con `nameserver 8.8.8.8`
-   - riavvia il servizio `sudo systemctl restart systemd-resolved`
+
+- verifica dns : `cat /etc/resolv.conf`
+- modifica il file con `nameserver 8.8.8.8`
+- riavvia il servizio `sudo systemctl restart systemd-resolved`
 
 ### 6. montare un disco esterno su proxmox
-   - creare la cartella per il punto di mount: `mkdir /media/wdbackup`
-   - editare il file `/etc/fstab` ed aggiungere per esempio per una connessione SMB/cifs:
-   ```
+
+- creare la cartella per il punto di mount: `mkdir /media/wdbackup`
+- editare il file `/etc/fstab` ed aggiungere per esempio per una connessione SMB/cifs:
+
+   ```text
    //192.168.1.249/WDBackup /media/wdbackup cifs rw,relatime,cache=strict,username=root,password=pass,uid=0,noforceuid,gid=0,noforcegid,noauto,x-systemd.automount 0 0 
    ```
-   questo dovrebbe montare in /media/wdbackup la condivisione WDBackup dal server 192.268.1.249, nota che in questo caso
-   seppur la condivisione fosse senza guest viene comunque usato un fake user e password
+
+questo dovrebbe montare in /media/wdbackup la condivisione WDBackup dal server 192.268.1.249, nota che in questo caso
+seppur la condivisione fosse senza guest viene comunque usato un fake user e password
 
 ### 7. condividere cartelle o mount da Proxmox host verso CT
-   - per effettuare la condivisione di cartella (bindmount) eseguire il comando:
-   ```
+
+- per effettuare la condivisione di cartella (bindmount) eseguire il comando:
+
+   ```bash
    pct set 504 -mp0 /media/wdbackup,mp=/media/wdbackup
    ```
+
    in questo caso viene condivisa la cartella /media/wdbackup sulla CT in /media/wdbackup con is mp0.
    ATTENZIONE: la CT deve essere definita "priviledged" altrimenti è impossibile utilizzare la cartella in scrittura.
 
 ### 8. convertire una CT da unpriviledged to priviledged o viceversa
+
    Effettuare backup della CT
    Effettuare il restore scegliendo l'opzione scelta.
 
 ### 9. Creare una partizione LVM-Thin partendo da un disco full ext4
+
    Se si dispone di aree di SSD non partizionate allora è possibile procedere alla creazione di una partizione LVM
 
-    - usare `fdisk` per creare la nuova partizione di tipo LVM
+- usare `fdisk` per creare la nuova partizione di tipo LVM
 
-      Si procede alla creazione della nuova partizione sfruttando
-      lo spazio liberato.
+   Si procede alla creazione della nuova partizione sfruttando
+   lo spazio liberato.
 
-      `fdisk /dev/nvme0n1` per entrare nell'utility di formattazione
+   `fdisk /dev/nvme0n1` per entrare nell'utility di formattazione
 
-      `F` per visualizzare gli spazi non partizionati. Potrebbero
-      essere listati più spazi in quanto spesso per questioni di allineamento
-      rimangono anche piccoli spazi disco non partizionabili.
-      Appuntarsi i valori di _Start_ ed _End_ dello spazio che
-      si deve utilizzare.
+   `F` per visualizzare gli spazi non partizionati. Potrebbero
+   essere listati più spazi in quanto spesso per questioni di allineamento
+   rimangono anche piccoli spazi disco non partizionabili.
+   Appuntarsi i valori di _Start_ ed _End_ dello spazio che
+   si deve utilizzare.
 
-      `n` creare la nuova partizione: tipo _primary_, numero della
-      partizione e start e end appuntati precedentemente.
+   `n` creare la nuova partizione: tipo _primary_, numero della
+   partizione e start e end appuntati precedentemente.
 
-      `t` per cambiare il formato della partizione in `8e` LVM
+   `t` per cambiare il formato della partizione in `8e` LVM
 
-      `w` scrive le modifiche su disco (con `q` si esce senza modificare)
+   `w` scrive le modifiche su disco (con `q` si esce senza modificare)
 
-    - creazione del "Thinpool"
-      Da interfaccia web, selezionare la voce `Disks\LVM-Thin` del nodo.
-      Selezionare la voce `Create:Thinpool` e da popup configurare:
-          - Disk: selezionata in automatico la partizione formattata in LVM
-          - Name: local-lvm
-          - Add Storage: selezionato
-      
-
-      
+- creazione del "Thinpool"
+   Da interfaccia web, selezionare la voce `Disks\LVM-Thin` del nodo.
+   Selezionare la voce `Create:Thinpool` e da popup configurare:
+      - Disk: selezionata in automatico la partizione formattata in LVM
+      - Name: local-lvm
+      - Add Storage: selezionato
 
 <!-- END -->
