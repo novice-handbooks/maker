@@ -25,7 +25,7 @@ il case fino a quando l'installazione su memoria SSD non è stata terminata e co
 
 ## Installazione del sistema operativo su memoria SSD
 
-Se si ha a disposizione un adattatore per schede M.2 nVME allora è
+Se si ha a disposizione un adattatore per schede M.2 NVMe allora è
 possibile effettuare l'installazione del sistema operativo direttamente sulla scheda di memoria.
 
 Personalmnete non avendo a disposizione questo adattatore ho preferito effettuare l'operazione di
@@ -35,7 +35,7 @@ In linea di massima si consiglia di seguire le seguenti operazioni:
 
 1. Scaricare l'applicativo [Raspberry Pi Imager](https://www.raspberrypi.com/software/) adatto al proprio Sistema Operativo.
 2. Tramite _Raspberry Pi Imager_ programmare la scheda microSD con il SO **Raspberry Pi OS (64bit)**
-3. Inserire la microSD nella Pi 5 e assicurarsi inoltre di avere inserito anche la memoria nVME.
+3. Inserire la microSD nella Pi 5 e assicurarsi inoltre di avere inserito anche la memoria NVMe.
 4. Avviare il Raspberry Pi 5 da microSD. Da applicazione Desktop assicurarsi di avere a disposizione l'applicativo _Raspberry Pi Imager_
-5. Utilizzare _Raspberry Pi Imager_ da desktop su Pi 5 per programmare la memoria nVME con il sistema operativo scelto.
-6. Accertarsi che al prossimo riavvio il sistema utilizzi nVME come boot disk: da terminale lanciare `sudo raspi-config`, poi da menu `Advanced Options` -> `Boot Order`, scegliere `nVME/USB boot`. Salva, chiudi e riavvia il dispositivo.
+5. Utilizzare _Raspberry Pi Imager_ da desktop su Pi 5 per programmare la memoria NVMe con il sistema operativo scelto.
+6. Accertarsi che al prossimo riavvio il sistema utilizzi NVMe come boot disk: da terminale lanciare `sudo raspi-config`, poi da menu `Advanced Options` -> `Boot Order`. Qui assicurarsi di utilizzare una opzione che permetta il boot da NVMe/USB in assenza di microSD (nel mio caso è la selezione di default).
