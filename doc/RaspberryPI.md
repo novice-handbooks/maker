@@ -235,7 +235,7 @@ sudo reboot
 
 ---
 
-## INSTALLAZIONE DI NODE.JS SU RASPBERRY PI ZERO (armv6l)
+## INSTALLAZIONE DI Node.js SU RASPBERRY PI ZERO (armv6l)
 
 Purtroppo i build ufficiali delle ultime versioni di Node.js non sono compilati per la piattaforma
 hardware ARM v6 utilizzata su Raspberry PI zero.
