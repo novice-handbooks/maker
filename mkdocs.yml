@@ -2,15 +2,15 @@
 
 # General Settings
 site_name: Alv67 Maker FAQ
-site_url: https://alv67.github.io/maker
+site_url: https://novice-handbooks.github.io/maker
 site_description: Collection of FAQ for Electronic Makers
 site_author: Alessandro Varesi
-copyright: Copyright &copy; 2022 Alessandro Varesi
+copyright: Copyright &copy; 2024 Alessandro Varesi
 
 # Repository Settings
-repo_name: alv67/maker
+repo_name: novice-handbooks/maker
 edit_uri: edit/master/doc
-repo_url: https://github.com/alv67/maker
+repo_url: https://github.com/novice-handbooks/maker
 remote_branch: gh-pages
 
 docs_dir: doc
@@ -19,6 +19,7 @@ docs_dir: doc
 
 # Theming and style
 theme:
+  language: it
   name: material
   # custom_dir: doc
   # features:
@@ -62,9 +63,10 @@ theme:
 #     - icon: fontawesome/brands/twitter
 #       link: https://twitter.com/boschrexroth
 
-# markdown_extensions:
+markdown_extensions:
 #   - admonition
-#   - attr_list
+  - attr_list
+  - md_in_html
 #   - codehilite
 #   - meta
 #   - toc:
@@ -87,6 +89,11 @@ theme:
 #   create here the navigation tree of the doc
 nav:
   - Home: index.md
-  - How-to guide:
+  - Raspberry Pi:
+    - Installazione Raspberry Pi: RaspberryPI.md
+    - Home Assistenat su Raspberry Pi: homeassistant.md
+    - Raspberry Pi 5 con NVMe: raspi5nvme.md
+    - Installa Proxmox su Raspberry Pi OS: proxmoxonpi5.md
     - Installazione Raspberry PI: RaspberryPI.md
-    - M5Stack Core: m5stack.md
+  - M5Stack CORE Fire: 
+    - Programmazione scheda con Arduino IDE: m5stack.md
