@@ -1,6 +1,4 @@
 ---
-# shellcheck disable=SC2086
-
 # This is a workflow to compile docs to Github Pages
 name: ci
 
