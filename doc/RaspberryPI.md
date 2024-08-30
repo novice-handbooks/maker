@@ -14,7 +14,7 @@
 
 A questo punto è possibile collegare un monitor e una tastiera per poter utilizzare il sistema operativo.
 
-### PREDISPOSIZIONE ALL'USO HEADLESS
+### Predisposizione all'uso Headless
 
 Nel caso non si voglia, o non si possa, utilizzare tastiera, mouse e monitor, è possibile effettuare una configurazione
 della connessione Wi-Fi seguendo una delle procedure seguenti.
@@ -74,7 +74,9 @@ della connessione Wi-Fi seguendo la procedura seguente.
 4. Purtroppo di default il sistema Raspbian non attiva il protocollo SSH, ma esiste un modo veloce per farlo:
    occorre creare un file nominato `SSH` (senza estensione) nella partizione `boot` della SDCARD.
 
-### HEADLESS LOGIN : Collegarsi al Raspberry senza utilizzo di Tastiera e Monitor
+### Headless login
+
+Ovvero **Collegarsi al Raspberry senza utilizzo di Tastiera e Monitor**
 
 E' possibile accedere alla console del sistema Raspberry da remoto senza l'uso della tastiera collegata.
 
@@ -104,7 +106,7 @@ Seguire i seguenti passi:
 
 ---
 
-## Prime operazioni post installazione
+## PRIME OPERAZIONI POST INSTALLAZIONE
 
 [_paragrafo editato il 2023-05-07_]
 
@@ -145,17 +147,17 @@ Viene presentata l'interfaccia per la personalizzazione del sistema:
 
 Di seguito viene riportata la lista delle configurazioni consigliate:
 
-#### **[System Option]/[Boot / Auto Login]**
+#### [System Option]/[Boot / Auto Login]
 
 Selezionare la modalità di avvio del sistema: si consiglia la voce: **`Console`**
 
-#### **[Interface Option]/[VNC]**
+#### [Interface Option]/[VNC]
 
 E' fortemente consigliato abilitare i servizi SSH e VNC.
 Sicuramente SSH è già abilitato se si è seguita la procedura di installazione proposta.
 Il servizio VNC si abilita con la voce di menù qui definita.
 
-#### **[Localization Options]**
+#### [Localization Options]
 
 Qui è possibile personalizzare la localizzazione in lingua del prodotto.
 Se non fatto durante l'installazione è qui possibile configurare il
@@ -233,7 +235,7 @@ sudo reboot
 
 ---
 
-## Istallazione di Node.js su Raspberry PI Zero (armv6l)
+## INSTALLAZIONE DI NODE.JS SU RASPBERRY PI ZERO (armv6l)
 
 Purtroppo i build ufficiali delle ultime versioni di Node.js non sono compilati per la piattaforma
 hardware ARM v6 utilizzata su Raspberry PI zero.
@@ -304,7 +306,7 @@ ad esempio in `/usr/local/lib/nodejs`
 
 ---
 
-## Installare Docker su Raspberry Pi OS
+## INSTALLARE DOCKER SU RASPBERRY PI OS
 
 [_paragrafo editato il 2023-05-07_]
 
