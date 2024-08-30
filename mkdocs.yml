@@ -65,8 +65,8 @@ theme:
 
 markdown_extensions:
 #   - admonition
-    - attr_list
-    - md_in_html
+  - attr_list
+  - md_in_html
 #   - codehilite
 #   - meta
 #   - toc:
