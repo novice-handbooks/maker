@@ -1,4 +1,6 @@
 ---
+# shellcheck disable=SC2086
+
 # This is a workflow to compile docs to Github Pages
 name: ci
 
@@ -26,7 +28,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      # shellcheck disable=SC2086
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
       - uses: actions/cache@v4
         with:
