@@ -6,11 +6,11 @@ Materiali utilizzati:
 
 | | | |
 |---|--|---|
-| ![raspi5](./images/raspi5.png) | [Raspberry Pi 5 8GB Quad-Core ARMA76 (64 Bits - 2,4 GHz)](https://www.raspberrypi.com/products/raspberry-pi-5/)| acquista su [Amazon.it](https://www.amazon.it/dp/B0CK2FCG1K)|
-| ![raspi5](./images/pi5powerblack.png) | [Alimentatore Raspberry Pi 5 USB-C da 27W](https://www.raspberrypi.com/products/27w-power-supply/) | acquista su [Amazon.it](https://www.amazon.it/dp/B0CN3MRV16)|
-|![raspi5](./images/neo5nvme.png) | [Argon NEO 5 M.2 NVME PCIE Case for Raspberry Pi 5](https://argon40.com/products/argon-neo-5-m-2-nvme-for-raspberry-pi-5) | acquista su [Amazon.it](https://www.amazon.it/dp/B0D3D64WZR)|
-|![raspi5](./images/crucial500gb.png) | [Crucial P3 500GB PCIe M.2 2280 SSD](https://it.crucial.com/products/ssd/crucial-p3-ssd) | acquista su [Amazon.it](https://www.amazon.it/dp/B0B25LQQPC)|
-|![raspi5](./images/microhdmi2hdmi.png) | Twozoh Adattatore Micro HDMI a HDMI | acquista su [Amazon.it](https://www.amazon.it/dp/B08PNW4W3V)|
+| ![raspi5](./images/raspi5.png){ width="150" } | [Raspberry Pi 5 8GB Quad-Core ARMA76 (64 Bits - 2,4 GHz)](https://www.raspberrypi.com/products/raspberry-pi-5/)| acquista su [Amazon.it](https://www.amazon.it/dp/B0CK2FCG1K)|
+| ![raspi5](./images/pi5powerblack.png){ width="150" } | [Alimentatore Raspberry Pi 5 USB-C da 27W](https://www.raspberrypi.com/products/27w-power-supply/) | acquista su [Amazon.it](https://www.amazon.it/dp/B0CN3MRV16)|
+|![raspi5](./images/neo5nvme.png){ width="150" } | [Argon NEO 5 M.2 NVME PCIE Case for Raspberry Pi 5](https://argon40.com/products/argon-neo-5-m-2-nvme-for-raspberry-pi-5) | acquista su [Amazon.it](https://www.amazon.it/dp/B0D3D64WZR)|
+|![raspi5](./images/crucial500gb.png){ width="150" } | [Crucial P3 500GB PCIe M.2 2280 SSD](https://it.crucial.com/products/ssd/crucial-p3-ssd) | acquista su [Amazon.it](https://www.amazon.it/dp/B0B25LQQPC)|
+|![raspi5](./images/microhdmi2hdmi.png){ width="150" } | Twozoh Adattatore Micro HDMI a HDMI | acquista su [Amazon.it](https://www.amazon.it/dp/B08PNW4W3V)|
 
 Solo per uso temporaneo occorre anche avere a disposizione un scheda di memoria **microSD** della capacità di almeno 8Gb,
 nonchè un **monitor HDMI** e un **mouse USB** e **tastiera USB**.

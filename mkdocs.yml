@@ -62,9 +62,10 @@ theme:
 #     - icon: fontawesome/brands/twitter
 #       link: https://twitter.com/boschrexroth
 
-# markdown_extensions:
+markdown_extensions:
 #   - admonition
-#   - attr_list
+    - attr_list
+    - md_in_html
 #   - codehilite
 #   - meta
 #   - toc:
