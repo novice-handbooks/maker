@@ -86,12 +86,12 @@ theme:
 # Content
 #   create here the navigation tree of the doc
 nav:
-  - Home: index.md
-  - Raspberry Pi:
-    - Installazione Raspberry Pi: RaspberryPI.md
-    - Home Assistenat su Raspberry Pi: homeassistant.md
-    - Raspberry Pi 5 con NVMe: raspi5nvme.md
-    - Installa Proxmox su Raspberry Pi OS: proxmoxonpi5.md
-    - Installazione Raspberry PI: RaspberryPI.md
-  - M5Stack CORE Fire: 
-    - Programmazione scheda con Arduino IDE: m5stack.md
+    - Home: index.md
+    - Raspberry Pi:
+        - Installazione Raspberry Pi: RaspberryPI.md
+        - Home Assistenat su Raspberry Pi: homeassistant.md
+        - Raspberry Pi 5 con NVMe: raspi5nvme.md
+        - Installa Proxmox su Raspberry Pi OS: proxmoxonpi5.md
+        - Installazione Raspberry PI: RaspberryPI.md
+    - M5Stack CORE Fire: 
+        - Programmazione scheda con Arduino IDE: m5stack.md
