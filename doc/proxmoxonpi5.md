@@ -287,13 +287,20 @@ Accedere all'interfaccia web all'indirizzo : [https://192.168.1.180:8006](https:
 - modifica il file con `nameserver 8.8.8.8`
 - riavvia il servizio `sudo systemctl restart systemd-resolved`
 
-### 6. montare un disco esterno su proxmox
+### 6. montare un disco esterno su proxmox (SMB)
 
 - creare la cartella per il punto di mount: `mkdir /media/wdbackup`
+- preparare un file con le credenziali di accesso alla risorsa condivisa : `nano /etc/win-credentials`
+
+  ```text
+  username=root
+  password=pass
+  ```
+  
 - editare il file `/etc/fstab` ed aggiungere per esempio per una connessione SMB/cifs:
 
    ```text
-   //192.168.1.249/WDBackup /media/wdbackup cifs rw,relatime,cache=strict,username=root,password=pass,uid=0,noforceuid,gid=0,noforcegid,noauto,x-systemd.automount 0 0 
+   ///192.168.1.249/WDBackup /media/wdbackup cifs relatime,credentials=/etc/win-credentials,file_mode=0777,dir_mode=0777 0 0
    ```
 
 questo dovrebbe montare in /media/wdbackup la condivisione WDBackup dal server 192.268.1.249, nota che in questo caso
