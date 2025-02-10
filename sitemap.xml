@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://novice-handbooks.github.io/maker/</loc>
+         <lastmod>2025-02-10</lastmod>
+    </url>
+    <url>
+         <loc>https://novice-handbooks.github.io/maker/RaspberryPI/</loc>
+         <lastmod>2025-02-10</lastmod>
+    </url>
+    <url>
+         <loc>https://novice-handbooks.github.io/maker/homeassistant/</loc>
+         <lastmod>2025-02-10</lastmod>
+    </url>
+    <url>
+         <loc>https://novice-handbooks.github.io/maker/m5stack/</loc>
+         <lastmod>2025-02-10</lastmod>
+    </url>
+    <url>
+         <loc>https://novice-handbooks.github.io/maker/proxmoxonpi5/</loc>
+         <lastmod>2025-02-10</lastmod>
+    </url>
+    <url>
+         <loc>https://novice-handbooks.github.io/maker/raspi5nvme/</loc>
+         <lastmod>2025-02-10</lastmod>
+    </url>
+</urlset>
