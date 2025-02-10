@@ -290,10 +290,7 @@ Accedere all'interfaccia web all'indirizzo : [https://192.168.1.180:8006](https:
 ### 6. montare un disco esterno su proxmox (SMB)
 
 Distinguiamo due differenti metodi per montare un disco: il primo più "storico" è mediante la configurazione del file `fstab`,
-l'altra, più "moderna" utilizza `systemd`.
-Qualche volta all'accensione il metodo con `fstab` sembra avere problemi per il montaggio automatico
-
-#### Utilizziamo `fstab`
+l'altra, più "moderna" utilizza `systemd`. 
 
 1. creare la cartella per il punto di mount: `mkdir /media/wdbackup`
 2. preparare un file con le credenziali di accesso alla risorsa condivisa : `nano /etc/win-credentials`
@@ -306,50 +303,24 @@ Qualche volta all'accensione il metodo con `fstab` sembra avere problemi per il 
 3. editare il file `/etc/fstab` ed aggiungere per esempio per una connessione SMB/cifs:
 
    ```text
-   ///192.168.1.249/WDBackup /media/wdbackup cifs relatime,credentials=/etc/win-credentials,file_mode=0777,dir_mode=0777,auto 0 0
+   //192.168.1.249/WDBackup /media/wdbackup cifs relatime,credentials=/etc/win-credentials,file_mode=0777,dir_mode=0777,x-systemd.automount 0 0
    ```
 
    questo dovrebbe montare in /media/wdbackup la condivisione WDBackup dal server 192.268.1.249, nota che in questo caso
    seppur la condivisione fosse senza guest viene comunque usato un fake user e password
 
-#### Utilizziamo `systemd`
+In automatico `systemd` utilizza il file `fstab` per crearsi la configurazione
+di mount alla partenza. Vengono creati servizi con come _mount-point.mount_. 
+Per l'esempio seguente viene creato il servizio `media-wdbackup.mount`
 
-1. creare la cartella per il punto di mount: `mkdir /media/wdbackup`
-2. occorre creare un file speciale con estensione `.mount` o `.automount` all'interno della cartella `/etc/systemd/system`
+Quindi è possibile verificare lo stato del sistema con il comando:
 
-   > I file devo avere nome che rappresenta il percorso di moutaggio. Esempio per un percorso `/media/wdbackup` il file da
-   > creare è `media-wdbackup.mount`
+```shell
+systemctl status media-wdbackup.mount
+```
 
-   Il file avrà un contenuto tipo:
+Sono possibili anche tutti i comandi disponibili con `systemctl` come `start`, `stop`, `restart` ...
 
-   ```text
-   [Unit]
-   Description=WD Media Drive
-
-   [Mount]
-   What=////192.168.1.249/WDBackup
-   Where=/media/wdbackup
-   Type=cifs
-   Options=default
-
-   [Install]
-   WantedBy=multi-user.target
-   ```
-
-3. Abilitare l'unità con il comando : `systemctl enable media-wdbackup.mount`
-4. Per abilitare l'_automount_ occorre altresì predisporre il file `media-wdbackup.automount` con il seguente contenuto:
-
-   ```text
-   Description=Automount WD Media Drive
-
-   [Automount]
-   Where=/media/wdbackup
-
-   [Install]
-   WantedBy=multi-user.target
-   ```
-
-   Ogni file `.automount` deve avere il corrispondente file `.mount`
 
 ### 7. condividere cartelle o mount da Proxmox host verso CT
 
