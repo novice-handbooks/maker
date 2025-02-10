@@ -289,22 +289,38 @@ Accedere all'interfaccia web all'indirizzo : [https://192.168.1.180:8006](https:
 
 ### 6. montare un disco esterno su proxmox (SMB)
 
-- creare la cartella per il punto di mount: `mkdir /media/wdbackup`
-- preparare un file con le credenziali di accesso alla risorsa condivisa : `nano /etc/win-credentials`
+Distinguiamo due differenti metodi per montare un disco: il primo più "storico" è mediante la configurazione del file `fstab`,
+l'altra, più "moderna" utilizza `systemd`. 
 
-  ```text
-  username=root
-  password=pass
-  ```
-  
-- editare il file `/etc/fstab` ed aggiungere per esempio per una connessione SMB/cifs:
+1. creare la cartella per il punto di mount: `mkdir /media/wdbackup`
+2. preparare un file con le credenziali di accesso alla risorsa condivisa : `nano /etc/win-credentials`
 
    ```text
-   ///192.168.1.249/WDBackup /media/wdbackup cifs relatime,credentials=/etc/win-credentials,file_mode=0777,dir_mode=0777 0 0
+   username=root
+   password=pass
+   ```
+  
+3. editare il file `/etc/fstab` ed aggiungere per esempio per una connessione SMB/cifs:
+
+   ```text
+   //192.168.1.249/WDBackup /media/wdbackup cifs relatime,credentials=/etc/win-credentials,file_mode=0777,dir_mode=0777,x-systemd.automount 0 0
    ```
 
-questo dovrebbe montare in /media/wdbackup la condivisione WDBackup dal server 192.268.1.249, nota che in questo caso
-seppur la condivisione fosse senza guest viene comunque usato un fake user e password
+   questo dovrebbe montare in /media/wdbackup la condivisione WDBackup dal server 192.268.1.249, nota che in questo caso
+   seppur la condivisione fosse senza guest viene comunque usato un fake user e password
+
+In automatico `systemd` utilizza il file `fstab` per crearsi la configurazione
+di mount alla partenza. Vengono creati servizi con come _mount-point.mount_. 
+Per l'esempio seguente viene creato il servizio `media-wdbackup.mount`
+
+Quindi è possibile verificare lo stato del sistema con il comando:
+
+```shell
+systemctl status media-wdbackup.mount
+```
+
+Sono possibili anche tutti i comandi disponibili con `systemctl` come `start`, `stop`, `restart` ...
+
 
 ### 7. condividere cartelle o mount da Proxmox host verso CT
 
