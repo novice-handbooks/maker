@@ -369,4 +369,28 @@ Sono possibili anche tutti i comandi disponibili con `systemctl` come `start`, `
       - Name: local-lvm
       - Add Storage: selezionato
 
+### 10. Tailscale non funziona all'interno di una LXC
+
+Potrebbe essere necessario installare `tailscale` all'interno di un LXC.
+Può succedere che dopo aver seguito la procedura indicata nel sito ufficiale di Tailscale al
+momento di lanciare il comando `tailscale up` il sistema indichi un errore.
+
+Questo è dovuto al fatto che il sistema non è in grado di essere instanziato come servizio per
+incompatibilità della struttura: non riesce a trovare il percorso /dev/net
+
+La soluzione consiste nel modificare a mano il file di configurazione del LXC.
+
+Dalla console comandi della macchina Proxmox spostarsi nella cartella `/etc/pve/lxc` e editare
+il file relativo alla CT sulla quale si riscontra il problema: ad esempio `303.conf`
+
+Aggiungere in fondo al file le seguenti due linee:
+
+```text
+lxc.cgroup2.devices.allow: c 10:200 rwm
+lxc.mount.entry: /dev/net dev/net none bind,create=dir
+```
+
+Salvare e riavviare la CT.
+
+Ora il comando `tailscale up` dovrebbe funzionare.
 <!-- END -->
