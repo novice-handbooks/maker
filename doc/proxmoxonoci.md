@@ -21,7 +21,7 @@ La vera difficoltà è quella di riuscire ad installare l'immagine di
 Proxmox VE sull'istanza OCI, inquanto è una immagine non prevista dal
 sistema automatizzato messo a disposizione da Oracle.
 
-> **Bibliografia**
+> **Reference**
 >
 > Buona parte delle procedure di seguito elencate sono state descritte
 > sul [Frank Ruan's Blog](https://frank-ruan.com) ed in particolare 
@@ -172,10 +172,128 @@ ff02::2 ip6-allrouters
 Modificarlo in (sostituire HOSTNAME con il proprio hostname, nel mio caso `pve-oci`):
 
 ```text
-127.0.0.1       localhost
+127.0.0.1    localhost.localdomain  localhost
 PUBLIC_IP    HOSTNAME.proxmox.com   HOSTNAME
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
 ```
 
 Riavviare l'istanza.
 
+## Installare Proxmox VE su Debian bookworm
 
+> **Reference**
+>
+> Si fa riferimento alla guida ufficiale del porting di Proxmox su architettura arm64
+>
+> [Install Proxmox VE on Debian bookworm](https://github.com/jiangcuo/Proxmox-Port/wiki/Install-Proxmox-VE-on-Debian-bookworm)
+
+### Aggiungere il repository di Proxmox VE
+
+Occorre eseguire i seguenti comandi come `root`, quindi invocare il comando `sudo su -`
+
+Aggiungiamo mil repository
+
+```shell
+echo 'deb [arch=arm64] https://mirrors.apqa.cn/proxmox/debian/pve bookworm port'>/etc/apt/sources.list.d/pveport.list
+```
+
+Aggiungiamo la chive del repository
+
+```shell
+curl -L https://mirrors.apqa.cn/proxmox/debian/pveport.gpg -o /etc/apt/trusted.gpg.d/pveport.gpg 
+```
+
+Aggiorniamo il repository ed il sistema
+
+```shell
+apt update && apt full-upgrade
+```
+
+### Installiamo i pacchetti Proxmox VE
+
+Aggiungiamo `ifupdown2`
+
+```shell
+apt install ifupdown2
+```
+
+Ora è il momento dei pacchetti Proxmox VE
+
+```shell
+apt install proxmox-ve postfix open-iscsi
+```
+
+Durante questa installazione vengono fatte alcune richieste. Scegliere 'Local only' alla richiesta "Postfix Configuration"
+
+![Postfix Configuration](./images/pve-install-postfix.png)
+
+E Accettare il nome server proposto:
+
+![Postfix Configuration 2](./images/pve-install-postfix2.png)
+
+A termine installazione viene richiesto se mantenere le modifiche al file `/etc/apt/sources.list.d/pveport.list
+
+```text
+Configuration file '/etc/apt/sources.list.d/pveport.list'
+ ==> File on system created by you or by a script.
+ ==> File also in package provided by package maintainer.
+   What would you like to do about it ?  Your options are:
+    Y or I  : install the package maintainer's version
+    N or O  : keep your currently-installed version
+      D     : show the differences between the versions
+      Z     : start a shell to examine the situation
+ The default action is to keep your current version.
+*** pveport.list (Y/I/N/O/D/Z) [default=N] ?
+```
+
+Scegliere l'opzione di default `N`
+
+## Accesso alla console di controllo (porta 8006)
+
+Ora il sistema è installato, occorre solo riuscire ad accedere alla console di gestione pubblicata sulla porta 8006.
+
+Possiamo raggiungere questa porta in due modi:
+- pubblicando la porta su internet (modo più semplice ma nmeno sicuro)
+- utilizzare una connessione VPN come ad esempio Tailscale.
+
+### Pubblicazione della porta
+
+Controlla le regole del firewall su OCI
+
+Su Oracle Cloud Infrastructure, devi configurare correttamente le Security Lists o i Network Security Groups (NSG).
+1. Vai su _OCI Console_ -> _Networking_ -> _Virtual Cloud Network (VCN)_
+
+2. Selezione la rete e dal nuovo menù scegli la voce _Security Lists_ poi seleziona la lista presente
+
+3. Aggiungi la nuova regola _Add Ingress Rules_ con i seguenti parametri:
+   - Source CIDR: Il tuo IP pubblico o 0.0.0.0/0 (se vuoi aprirlo a tutti)
+	- Destination Port Range: 8006
+	- Protocol: TCP
+	- Stateless: No
+
+   ![Oci Ingress Rule](./images/oci-ingress-rules.png)
+
+Ora è possibile accedere alla console di Proxmox tramite l'indirizzo:
+
+`https://IP_PUBBLICO:8006`
+
+
+### Utilizzo di una VPN (TODO)
+
+## Accesso alla console e prima configurazione
+
+Una volta che si accede alla console occorre eseguire alcune prime operazioni:
+
+### Aggiunta del repository di Proxmox
+
+1. Accedi tramite utente `root` creato durante l'installazione di Debian
+
+2. Seleziona la voce `Repositories`.
+
+3. Seleziona il comando `Add`
+
+4. Dal popup scegli come Repository `No-Subscription`
