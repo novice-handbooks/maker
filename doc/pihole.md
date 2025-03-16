@@ -2,27 +2,27 @@
 
 ## Pi-hole: il DNS fatto in casa per proteggerci
 
-Pi-hole è una soluzione open source che funge da server DNS locale con capacità di filtraggio, progettato principalmente per bloccare pubblicità e malware su reti domestiche o aziendali. Opera come un "filtro" tra gli utenti della rete e il mondo internet, intercettando le richieste DNS e confrontandole con liste nere di domini noti per contenere pubblicità invasiva, spyware, ransomware, malware, cryptoware, cryptominer e altri tipi di contenuti indesiderati. Installato su un dispositivo dedicato (come Raspberry Pi), può proteggere tutti i dispositivi connessi alla rete, bloccando automaticamente le richieste a domini dannosi o pubblicitari senza necessità di configurazione su ciascun dispositivo.
+Pi-hole è una soluzione open source che funge da server DNS locale con capacità di filtraggio, progettato principalmente per bloccare pubblicità e malware su reti domestiche o aziendali. Opera come un "filtro" tra gli utenti della rete e il mondo internet, intercettando le richieste DNS e
+confrontandole con liste nere di domini noti per contenere pubblicità invasiva, spyware, ransomware, malware, cryptoware, cryptominer e altri tipi di contenuti indesiderati. Installato su un dispositivo dedicato (come Raspberry Pi), può proteggere tutti i dispositivi connessi alla rete,
+bloccando automaticamente le richieste a domini dannosi o pubblicitari senza necessità di configurazione su ciascun dispositivo.
 
 ## Configurazione e personalizzazione di Pi-hole
 
 Per configurare Pi-hole, è necessario installarlo su un dispositivo che fungerà da server DNS, come Raspberry Pi, utilizzando guide specifiche disponibili sul sito ufficiale di Pi-hole. Una volta installato, l'utente può accedere all’interfaccia web di Pi-hole per personalizzare le impostazioni, inclusa la gestione delle liste nere e whitelist, il monitoraggio del traffico DNS e le statistiche sulla rete.
 
-Nel nostro caso verrà installato come container LXC in proxmox. 
-E' installato utilizzando il seguente script: https://pimox-scripts.com/scripts?id=pihole
+Nel nostro caso verrà installato come container LXC in proxmox.
+E' installato utilizzando il seguente script: [https://pimox-scripts.com/scripts?id=pihole](https://pimox-scripts.com/scripts?id=pihole)
 Conviene avere l'accortezza di installarlo con IP Statico (nel mio caso 192.168.1.1) per facilitarne la configurazione.
 
-Si può accedere all'interfaccia di configurazione puntando all'indirizzo : http://192.168.1.1/admin
+Si può accedere all'interfaccia di configurazione puntando all'indirizzo : [http://192.168.1.1/admin](http://192.168.1.1/admin)
 
 > _Impostazione della password_
 >
 > Occorre creare la password di accesso prima di poter accedere la prima volta:
-> 
+>
 > da Proxmox accedere alla _Shell_ del container appena creato.
 > Eseguire il comando : `pihole -a -p` e creare la password
 >
-
-
 
 ### Pi-hole come DNS su tutti i dispositivi
 
