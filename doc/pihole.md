@@ -8,7 +8,8 @@ bloccando automaticamente le richieste a domini dannosi o pubblicitari senza nec
 
 ## Configurazione e personalizzazione di Pi-hole
 
-Per configurare Pi-hole, è necessario installarlo su un dispositivo che fungerà da server DNS, come Raspberry Pi, utilizzando guide specifiche disponibili sul sito ufficiale di Pi-hole. Una volta installato, l'utente può accedere all’interfaccia web di Pi-hole per personalizzare le impostazioni, inclusa la gestione delle liste nere e whitelist, il monitoraggio del traffico DNS e le statistiche sulla rete.
+Per configurare Pi-hole, è necessario installarlo su un dispositivo che fungerà da server DNS, come Raspberry Pi, utilizzando guide specifiche disponibili sul sito ufficiale di Pi-hole.
+Una volta installato, l'utente può accedere all’interfaccia web di Pi-hole per personalizzare le impostazioni, inclusa la gestione delle liste nere e whitelist, il monitoraggio del traffico DNS e le statistiche sulla rete.
 
 Nel nostro caso verrà installato come container LXC in proxmox.
 E' installato utilizzando il seguente script: [https://pimox-scripts.com/scripts?id=pihole](https://pimox-scripts.com/scripts?id=pihole)
