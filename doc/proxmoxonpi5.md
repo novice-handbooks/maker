@@ -290,7 +290,7 @@ Accedere all'interfaccia web all'indirizzo : [https://192.168.1.180:8006](https:
 ### 6. montare un disco esterno su proxmox (SMB)
 
 Distinguiamo due differenti metodi per montare un disco: il primo più "storico" è mediante la configurazione del file `fstab`,
-l'altra, più "moderna" utilizza `systemd`. 
+l'altra, più "moderna" utilizza `systemd`.
 
 1. creare la cartella per il punto di mount: `mkdir /media/wdbackup`
 2. preparare un file con le credenziali di accesso alla risorsa condivisa : `nano /etc/win-credentials`
@@ -310,7 +310,7 @@ l'altra, più "moderna" utilizza `systemd`.
    seppur la condivisione fosse senza guest viene comunque usato un fake user e password
 
 In automatico `systemd` utilizza il file `fstab` per crearsi la configurazione
-di mount alla partenza. Vengono creati servizi con come _mount-point.mount_. 
+di mount alla partenza. Vengono creati servizi con come _mount-point.mount_.
 Per l'esempio seguente viene creato il servizio `media-wdbackup.mount`
 
 Quindi è possibile verificare lo stato del sistema con il comando:
@@ -369,4 +369,28 @@ Sono possibili anche tutti i comandi disponibili con `systemctl` come `start`, `
       - Name: local-lvm
       - Add Storage: selezionato
 
+### 10. Tailscale non funziona all'interno di una LXC
+
+Potrebbe essere necessario installare `tailscale` all'interno di un LXC.
+Può succedere che dopo aver seguito la procedura indicata nel sito ufficiale di Tailscale al
+momento di lanciare il comando `tailscale up` il sistema indichi un errore.
+
+Questo è dovuto al fatto che il sistema non è in grado di essere instanziato come servizio per
+incompatibilità della struttura: non riesce a trovare il percorso /dev/net
+
+La soluzione consiste nel modificare a mano il file di configurazione del LXC.
+
+Dalla console comandi della macchina Proxmox spostarsi nella cartella `/etc/pve/lxc` e editare
+il file relativo alla CT sulla quale si riscontra il problema: ad esempio `303.conf`
+
+Aggiungere in fondo al file le seguenti due linee:
+
+```text
+lxc.cgroup2.devices.allow: c 10:200 rwm
+lxc.mount.entry: /dev/net dev/net none bind,create=dir
+```
+
+Salvare e riavviare la CT.
+
+Ora il comando `tailscale up` dovrebbe funzionare.
 <!-- END -->
