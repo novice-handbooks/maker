@@ -282,7 +282,34 @@ Ora è possibile accedere alla console di Proxmox tramite l'indirizzo:
 `https://IP_PUBBLICO:8006`
 
 
-### Utilizzo di una VPN (TODO)
+## Utilizzo di una VPN (Tailscale)
+
+Potrebbe essere utile configurare la macchina su di una propria VPN in modo che sia facilemnte accessibile dalla propria rete interna.
+
+Personalmente utilizzo [Tailscale](https://tailscale.com). Per eseguire l'installazione di Tailscale sulla macchina si esegue lo script
+per l'installazione su piattaforma Linux; da console lanciare il comando: 
+```bash
+curl -fsSL https://tailscale.com/install.sh | sh
+```
+Terminata l'installazione proseguire con la registrazione della macchina sulla propria VPN:
+```bash
+sudo tailscale up
+```
+e seguire il link fornito per terminare la registrazione.
+
+> ATTENZIONE
+>
+> Una volta registrata la macchina si consiglia di disabilitare la scadenza della chiave di connessione
+> agendo sul menu `...` e attivando la voce `Disable key expiry`
+
+### Configurazione personalizzata per Oracle Cloud
+
+Si consiglia di seguire le impostazioni consigliate da Tailscale per la gestione corretta su Cloud Oracle presenti [qui](https://tailscale.com/kb/1149/cloud-oracle)
+Agendo sulla pagina di configurazione di Oracle Cloud selezionere il tab [Network](https://cloud.oracle.com/networking/vcns) e selezionare
+**Virtual Cloud Networks** e poi selezionare la rete VCN utilizzata dalla macchina virtuale
+
+
+1. Abilitazione della porta 
 
 ## Accesso alla console e prima configurazione
 
