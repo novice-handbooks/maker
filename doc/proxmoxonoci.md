@@ -305,11 +305,46 @@ e seguire il link fornito per terminare la registrazione.
 ### Configurazione personalizzata per Oracle Cloud
 
 Si consiglia di seguire le impostazioni consigliate da Tailscale per la gestione corretta su Cloud Oracle presenti [qui](https://tailscale.com/kb/1149/cloud-oracle)
+
+#### 1. Autorizza porta UDP 41641
 Agendo sulla pagina di configurazione di Oracle Cloud selezionere il tab [Network](https://cloud.oracle.com/networking/vcns) e selezionare
 **Virtual Cloud Networks** e poi selezionare la rete VCN utilizzata dalla macchina virtuale
 
+![oci-vcn](./images/oci-vcn.png)
 
-1. Abilitazione della porta 
+Selezionare il tab **Security** e poi selezionare la lista di sicurezza (probabilmente l'unica di _Default_)
+
+![oci-vcn-security](./images/oci-vcn-security.png)
+
+Scegliere **secutity Rules**
+A questo punto aggiungere una _Regola ingresso Stateless per 0.0.0.0/0 UDP porta 41641
+
+![oci-ingress-rule-tailscale](./images/oci-ingress-rule-tailscale.png)
+
+#### 2. Pubblica tutta la sottorete VCN tramite Tailscale
+
+Può essere utile permettere alla connessione Tailscale di avere accesso a tutta la sottorete delle proprie VM su Oracle.
+
+Da console eseguire il seguente comando
+
+```bash
+sudo tailscale up --advertise-routes=10.0.0.0/16,169.254.169.254/32 --accept-dns=false
+```
+
+> NOTA
+> 
+> Affinché la sottorete sia pubblicata effettivamente, occorre agire sulla 
+> "Admin Console" di Tailscale e selezionando il device autorizzare la sottorete.
+
+#### 3. Aggiungere Oracle DNS alla tailnet
+
+Nella console di amministrazione nella [sezione DNS di tailscale](https://login.tailscale.com/admin/dns)
+
+Selezionare `Add nameserver`/`Custom...`
+
+Configurare come da immagine seguente
+
+![tailscale.oraclevcn-dns](./images/tailscale-oraclevcn-dns.png)
 
 ## Accesso alla console e prima configurazione
 
