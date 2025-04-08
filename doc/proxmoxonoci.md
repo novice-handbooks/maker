@@ -359,3 +359,103 @@ Una volta che si accede alla console occorre eseguire alcune prime operazioni:
 3. Seleziona il comando `Add`
 
 4. Dal popup scegli come Repository `No-Subscription`
+
+## Creare un cluster Proxmox tra due nodi connessi tramite tailscale
+
+> NOTA: 
+> Questa procedura presuppone l'uso di Proxmox 8.
+>
+> I due nodi in questione saranno qui indicati con `pve1` e `pve2`. Occorre accertarsi che comunque non abbiano lo stesso nome.
+
+
+### 1. Imposta correttamente /etc/hosts su entrambi i nodi
+
+In entrambi i nodi editare il file `/etc/hosts` aggiungendo le seguenti righe:
+
+```text
+100.x.y.z   pve1
+100.a.b.c   pve2
+```
+
+Usare gli **IP Tailscale** reali al posto di 100.x.y.z e 100.a.b.c
+
+### 2. Creare il cluster sul nodo principale (pve1)
+
+```bash
+pvecm create nome-cluster
+```
+
+Importante: A questo punto Proxmox userà la prima interfaccia di rete disponibile. Per forzare l’uso di Tailscale, modificheremo i file di configurazione subito dopo.
+
+### 3. Modificare la configurazione del cluster
+
+Su `pve1`, editare il file `/etc/pve/corosync.conf` e modificare la sezione `interface`:
+
+```text
+nodelist{
+   node{
+      name: pve1
+      nodeid: 1
+      quorum_votes: 1
+      ring0_addr: 100.x.y.z
+  }
+}
+```
+
+Inoltre occorre modificare la geestione del "quorum" per permettere l'uso di solo 2 nodi.
+
+Modificare la sezione `totem` aggiungendo:
+
+```text
+two_node: 1
+wait_for_all: 0
+```
+
+Poi riavviare il servizio `corosync`
+
+```bash
+systemctl restart corosync
+```
+
+### 4. Aggiungere il secondo nodo (pve2)
+
+Sul nodo pve2 eseguire:
+
+```bash
+pvecm add pve1
+```
+
+Usare l'**hostname** di `pve1` per assicurarsi che il cluster venga contattato tramite Tailscale e che 
+la verifica dell'hostname sia accettata
+
+Il risultato dovrebbe essere qualcosa come:
+
+```text
+root@pve2:~# pvecm add pve1
+Please enter superuser (root) password for 'pve1': ********
+Establishing API connection with host 'pve1'
+The authenticity of host 'pve1' can't be established.
+X509 SHA256 key fingerprint is 9A:6D:E9:9A:DA:49:26:57:2B:57:62:21:A0:53:34:E6:D2:DA:5B:2B:EF:7B:FA:24:8B:71:20:C9:28:B2:00:3C.
+Are you sure you want to continue connecting (yes/no)? yes
+Login succeeded.
+check cluster join API version
+No cluster network links passed explicitly, fallback to local node IP '100.x.y.z'
+Request addition of this node
+Join request OK, finishing setup locally
+stopping pve-cluster service
+backup old database to '/var/lib/pve-cluster/backup/config-1744145363.sql.gz'
+waiting for quorum...OK
+(re)generate node files
+generate new node certificate
+merge authorized SSH keys
+generated new node certificate, restart pveproxy and pvedaemon services
+successfully added node 'pve2' to cluster.
+```
+
+### 5. Verificare lo stato del cluster
+
+Su qualsiasi nodo eseguire:
+
+```bash
+pvecm status
+```
