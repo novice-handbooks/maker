@@ -47,7 +47,7 @@ wget https://boot.netboot.xyz/ipxe/netboot.xyz-arm64.efi
 
 Una volta eseguito il download sconnettersi dalla macchina. Ora dovremo far ripartire la macchina cercando di intercettare al boot in modo da utilizzare l'immagine appena scaricata.
 
-Nella pagina di interfaccia di OCI assicurarsi di avere lanciato la Console collegata all'istanza. Per fare questo, una volta selezionata l'istanza, scegliere la voce _Concole connection_ presente nel menù laterale.
+Nella pagina di interfaccia di OCI assicurarsi di avere lanciato la Console collegata all'istanza. Per fare questo, una volta selezionata l'istanza, scegliere la voce _Console connection_ presente nel menù laterale.
 
 La qui utilizzare "Lauch Cloud Shell connection". Questo apre a fondo pagina una console (Cloud Shell) connessa all'istanza.
 
@@ -459,3 +459,4 @@ Su qualsiasi nodo eseguire:
 ```bash
 pvecm status
 ```
+
