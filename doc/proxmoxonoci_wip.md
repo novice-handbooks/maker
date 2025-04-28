@@ -1,4 +1,4 @@
-## Creazione di rete virtuale
+## Creazione di rete virtuale (VEDERE PIU AVANTI)
 
 > Attenzione !!!
 > 
@@ -6,6 +6,7 @@
 > cancellata questa annotazione. 
 > 
 > I passi seguenti sono da ritenersi solo indicativi.
+
 
 
 Il primo passo da fare è assicurarsi che il sistema SDN (Software Development Network) sia attivo.
@@ -153,3 +154,251 @@ Puoi automatizzarlo con uno script o aggiungerlo a /etc/network/interfaces con p
 ⸻
 
 Vuoi uno script per automatizzare la parte iptables/NAT oppure uno YAML di esempio per creare container collegati alla VNet?
+
+   
+## Preparazione di una rete privata
+
+
+Sì, assolutamente sì!
+Puoi creare una rete interna in Proxmox che:
+	•	dia IP privati ai container LXC in automatico tramite DHCP,
+	•	e faccia anche NAT per farli uscire su internet,
+	•	e permetta a te di fare port forwarding verso i container.
+
+In pratica, puoi avere una mini-“rete casalinga” virtuale dentro Proxmox.
+
+⸻
+
+Come fare
+
+Ti spiego come fare passo passo 👇
+
+⸻
+
+1. Crea una nuova bridge (vmbr1)
+
+> NOTA
+>
+> Ho effettuato la creazione dall'interfaccia Networks di Proxmox, e applicando la rete risulta attiva.
+> Editando a mano il file non avviene l'attivazione in automatico.
+
+Accedi alla tua Proxmox VM (quella su Oracle Cloud) via SSH.
+
+Apri il file /etc/network/interfaces:
+
+```bash
+sudo nano /etc/network/interfaces
+```
+
+E aggiungi una nuova bridge chiamata vmbr1, tipo:
+
+```text
+auto vmbr1
+iface vmbr1 inet static
+    address 192.168.100.1/24
+    bridge-ports none
+    bridge-stp off
+    bridge-fd 0
+```
+
+👉 Qui vmbr1 ha IP 192.168.100.1 e nessuna porta fisica collegata (bridge interno).
+
+⸻
+
+2. Installa un piccolo server DHCP+NAT
+
+Ora installiamo un software che dia:
+	•	DHCP ai container
+	•	NAT verso Internet (uscita su IP pubblico)
+
+Il più semplice è dnsmasq + NAT via iptables.
+
+Installa dnsmasq:
+
+```bash
+sudo apt update
+sudo apt install dnsmasq
+```
+
+
+⸻
+
+3. Configura dnsmasq per vmbr1
+
+Crea un file /etc/dnsmasq.d/lxc-net.conf:
+
+```bash
+sudo nano /etc/dnsmasq.d/lxc-net.conf
+```
+
+Contenuto:
+
+```text
+interface=vmbr1
+bind-interfaces
+dhcp-range=192.168.100.10,192.168.100.100,12h
+```
+
+	•	Questo fa partire DHCP sulla vmbr1
+	•	Da IP .10 a .100, lease 12 ore
+
+Poi riavvia dnsmasq:
+
+```bash
+sudo systemctl restart dnsmasq
+```
+
+
+⸻
+
+4. Abilita il NAT (per far uscire i container su internet)
+
+Imposta il NAT con iptables:
+
+```bash
+# Abilita il forwarding di pacchetti
+sudo sysctl -w net.ipv4.ip_forward=1
+
+# Regola NAT: maschera tutto ciò che esce da Internet
+sudo iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o enp0s3 -j MASQUERADE
+```
+
+(Nota: sostituisci enp0s3 con il nome della tua scheda di rete pubblica, puoi vederla con ip a)
+
+Se vuoi rendere permanente:
+
+```bash
+sudo apt install iptables-persistent
+sudo netfilter-persistent save
+```
+
+
+⸻
+
+5. Configura i container LXC per usare vmbr1
+
+Quando crei o modifichi un container:
+	•	Vai su Proxmox Web UI
+	•	Scegli il container
+	•	Sezione Network
+	•	Imposta la scheda su Bridge: vmbr1 (invece di vmbr0 o altro)
+	•	Metodo IP: DHCP
+
+Risultato:
+Ogni container attaccato a vmbr1 riceverà automaticamente un IP 192.168.100.x 🎯
+
+⸻
+
+6. E ora il Port Forwarding?
+
+Con questa configurazione:
+	•	Puoi fare come prima (iptables PREROUTING) per girare le porte dal IP pubblico della VM verso gli IP dei container.
+
+Ad esempio:
+
+sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 192.168.100.10:80
+
+
+
+⸻
+
+Schema finale:
+
+Internet --> Oracle VM IP Pubblico:80 --> iptables --> Container IP Privato (es. 192.168.100.10:80)
+
+E tutti i container si gestiscono automaticamente via DHCP 🔥
+
+⸻
+
+
+
+## TAILSCALE come pubblicazione della sottorete
+
+Sì, confermo! 🔥
+Con Tailscale puoi pubblicare l’intera sottorete vmbr1, così che tu possa raggiungere tutti i container LXC via Tailscale, senza esporre nulla su internet.
+
+Questa funzione si chiama Subnet Router.
+
+⸻
+
+Cosa significa “Subnet Router”?
+	•	La macchina Proxmox (dove hai Tailscale installato)
+➔ pubblicherà verso la VPN Tailscale la rete 192.168.100.0/24 (la rete dei tuoi container su vmbr1).
+	•	Dal tuo computer, se sei collegato a Tailscale, potrai raggiungere direttamente tutti i container LXC.
+
+⸻
+
+Come configurarlo
+
+1. Abilita il “forwarding” IP su Proxmox
+
+Prima di tutto, assicurati che il tuo sistema permetta di inoltrare pacchetti di rete:
+
+sudo sysctl -w net.ipv4.ip_forward=1
+
+Per renderlo permanente (dopo un reboot), aggiungilo in /etc/sysctl.conf:
+
+echo "net.ipv4.ip_forward=1" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+
+
+
+⸻
+
+2. Rilancia Tailscale con il parametro --advertise-routes
+
+Ora, sul nodo Proxmox dove gira Tailscale, devi pubblicare la rete:
+
+sudo tailscale up --advertise-routes=192.168.100.0/24
+
+(aggiungi anche --accept-routes=true se vuoi subito ricevere eventuali subnet da altri)
+
+⸻
+
+3. Approva il subnet router nella dashboard di Tailscale
+
+Vai sulla dashboard Tailscale:
+
+https://login.tailscale.com/admin/machines
+
+	•	Cerca la tua macchina Proxmox.
+	•	Vedrai una notifica “Subnet routes pending”.
+	•	Clicca Approve per il route 192.168.100.0/24.
+
+✅ Ora il route è visibile a tutti i device Tailscale autorizzati.
+
+⸻
+
+4. Assicurati che il client Tailscale possa usare le rotte
+
+Se stai usando un client Tailscale:
+	•	Su desktop (Windows, macOS, Linux) va tutto automatico.
+	•	Su Mobile (iOS/Android) devi abilitare “Use exit node / Allow remote subnets” nelle impostazioni Tailscale.
+
+⸻
+
+🚀 Risultato finale
+
+Ora puoi da qualsiasi dispositivo connesso alla tua rete Tailscale:
+	•	pingare gli LXC tipo ping 192.168.100.10
+	•	raggiungerli via browser su http://192.168.100.10
+	•	SSH direttamente se hai server SSH sui container.
+
+⸻
+
+Schema visivo della rete
+
+[ Tu su Tailscale ] ---> [ Proxmox ] ---> [ vmbr1 ] ---> [ LXC 192.168.100.x ]
+
+
+
+⸻
+
+Riepilogo
+
+Step	Cosa fai
+1	Abiliti IP forwarding
+2	Rilanci Tailscale con --advertise-routes=192.168.100.0/24
+3	Approvi route da dashboard Tailscale
+4	Usi Tailscale normalmente per raggiungere i container
+
