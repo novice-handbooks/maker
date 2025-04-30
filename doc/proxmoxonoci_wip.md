@@ -1,3 +1,113 @@
+
+## Creare rete vmbr0 con DHCP & NAT
+
+### 1. Creare il bridge
+
+Da interfaccia web di proxmox creare la rete virtuale
+
+Dal Nodo selezionere `Network` / `Create` / `Linux Bridge`
+
+Con i seguenti parametri:
+
+|    |    |
+| ---: | --- |
+| Name: | `vmbr0` |
+| IPv4/CIDR: |  `192.168.100.1/24` |
+| Autostart: | `True` |
+
+E agire sul comando `Apply Configuration` per attivare la configurazione
+
+### 2. Abilitare IP forwarding
+
+Temporaneamente (solo per testing)
+
+```bash
+echo 1 > /proc/sys/net/ipv4/ip_forward
+```
+
+Permanentemente:
+
+Edita il file  `/etc/sysctl.conf` e decommenta la linea:
+
+```ini
+net.ipv4.ip_forward=1
+```
+
+Applica le modifiche:
+
+```bash
+sysctl -p
+```
+
+### 3. `iptables` per configurare il NAT
+
+Scopri il nome dell'interfaccia di rete principale usando il comando `ip a` 
+oppure dalla schermata `Networks` usata precedentemente per creare la rete `vmbr0`
+
+Nel mio caso è `enp0s6` 
+
+Aggiungiamo la regola NAT
+
+```bash
+iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o enp0s6 -j MASQUERADE
+```
+
+Inoltre occorre abilitare il forwarding:
+
+```bash
+iptables -A FORWARD -i vmbr0 -o enp0s6 -j ACCEPT
+iptables -A FORWARD -i enp0s6 -o vmbr0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+```
+
+Per rendere queste regole persistenti:
+
+```bash
+apt install iptables-persistent
+```
+
+Salva le regole attuali:
+
+```bash
+iptables-save > /etc/iptables/rules.v4
+```
+
+### 4. Configura il DHCP
+
+Per permettere alle VM o LXC di ricevere IP automatici dalla vmbr0 occorre installare `dnsmasq`
+
+```bash
+apt install dnsmasq
+```
+e configurarlo editando il file `/etc/dnsmasq.conf`
+
+```ini
+interface=vmbr1
+dhcp-range=192.168.100.10,192.168.100.200,12h
+```
+
+Rilanciare dnsmasq:
+
+```bash
+systemctl restart dnsmasq
+```
+
+### 5. Ora è possibile creare VM o LXC su rete vmbr0
+
+
+nell'interfaccia Web di Proxmox alla creazione scegliere la
+rete bridge `vmbr0` e impostare o in DHCP oppure se si
+desidera in IP statico nel range `192.168.100.0/24`
+con gateway `192.168.100.1`
+
+Per testare il corretto funzionamento, dall'interno della VM o della LXC eseguire:
+
+```bash
+ping 8.8.8.8
+ping google.com
+```
+
+<!--
+
 ## Creazione di rete virtuale (VEDERE PIU AVANTI)
 
 > Attenzione !!!
@@ -304,14 +414,14 @@ sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 19
 
 Schema finale:
 
-Internet --> Oracle VM IP Pubblico:80 --> iptables --> Container IP Privato (es. 192.168.100.10:80)
+Internet -- > Oracle VM IP Pubblico:80 -- > iptables -- > Container IP Privato (es. 192.168.100.10:80)
 
 E tutti i container si gestiscono automaticamente via DHCP 🔥
 
 ⸻
+-->
 
-
-
+<!--
 ## TAILSCALE come pubblicazione della sottorete
 
 Sì, confermo! 🔥
@@ -388,7 +498,7 @@ Ora puoi da qualsiasi dispositivo connesso alla tua rete Tailscale:
 
 Schema visivo della rete
 
-[ Tu su Tailscale ] ---> [ Proxmox ] ---> [ vmbr1 ] ---> [ LXC 192.168.100.x ]
+[ Tu su Tailscale ] --- > [ Proxmox ] --- > [ vmbr1 ] --- > [ LXC 192.168.100.x ]
 
 
 
@@ -402,3 +512,4 @@ Step	Cosa fai
 3	Approvi route da dashboard Tailscale
 4	Usi Tailscale normalmente per raggiungere i container
 
+-->
