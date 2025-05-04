@@ -106,6 +106,95 @@ ping 8.8.8.8
 ping google.com
 ```
 
+----
+# WI
+
+> ChatGPT request:
+>
+> ```
+> Ho un server proxmox su oracle cloud. Ho IP pubblico ed ho creato una rete vmbr0 192.168.100.1/24. Su questa server ho creato un LXC che pubblica un seervizio su 192.168.100.100:80 . Come posso nattare questo in modo da poterlo leggere su ip pubblico alla porta 8080
+> ```
+>
+
+
+
+Per esporre il servizio dell’LXC su Oracle Cloud (con Proxmox) tramite IP pubblico e una porta (es. 8080), devi configurare il port forwarding (NAT) usando iptables sul nodo Proxmox.
+
+Hai:
+	•	IP pubblico sul nodo Proxmox (es. 1.2.3.4)
+	•	LXC con IP privato 192.168.100.100
+	•	Servizio in ascolto su 192.168.100.100:80
+	•	Vuoi accedere da fuori su http://1.2.3.4:8080
+
+Ecco come fare:
+
+⸻
+
+1. Abilita l’inoltro IP sul nodo Proxmox
+
+Modifica /etc/sysctl.conf e assicurati che questa riga sia presente (e non commentata):
+
+net.ipv4.ip_forward=1
+
+Poi applica:
+
+sysctl -p
+
+
+
+⸻
+
+2. Aggiungi regole iptables sul nodo Proxmox
+
+Assumendo che vmbr0 sia la rete privata interna con subnet 192.168.100.0/24 e ens3 (o simile) sia la tua interfaccia pubblica:
+
+# Sostituisci ens3 con la tua interfaccia pubblica, puoi verificarla con "ip a"
+PUB_IFACE=ens3
+
+# NAT da 1.2.3.4:8080 a 192.168.100.100:80
+iptables -t nat -A PREROUTING -i $PUB_IFACE -p tcp --dport 8080 -j DNAT --to-destination 192.168.100.100:80
+iptables -t nat -A POSTROUTING -o vmbr0 -p tcp -d 192.168.100.100 --dport 80 -j MASQUERADE
+
+
+
+⸻
+
+3. (Facoltativo) Rendi le regole permanenti
+
+Su Debian/Ubuntu puoi installare iptables-persistent:
+
+apt install iptables-persistent
+
+Durante l’installazione ti chiederà se salvare le regole attuali — conferma.
+
+Altrimenti salva manualmente con:
+
+iptables-save > /etc/iptables/rules.v4
+
+
+
+⸻
+
+4. Controlla che Oracle Cloud consenta la porta 8080
+
+Accedi alla console Oracle Cloud > VCN > Security Lists o NSG > assicurati che ci sia una regola in ingresso che permette il traffico TCP sulla porta 8080 dal tuo IP o da tutti (0.0.0.0/0) se vuoi accesso pubblico.
+
+⸻
+
+5. Testa
+
+Da una macchina esterna:
+
+curl http://1.2.3.4:8080
+
+Dovresti vedere la risposta del servizio LXC.
+
+⸻
+
+Vuoi che ti fornisca uno script per automatizzare tutto questo?
+
+
+
 <!--
 
 ## Creazione di rete virtuale (VEDERE PIU AVANTI)
