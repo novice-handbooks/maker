@@ -32,6 +32,11 @@ sistema automatizzato messo a disposizione da Oracle.
 Si da qui per scontato che sia stata creata una instanza selezionando l'architettura ARM-based e collegando un blocco dati
 di 100GB.
 
+> Nota:
+>
+> Qualora si voglia creare una instanza su Oracle Cloud Infrastructure (OCI) è possibile
+> seguire le istruzioni riportare in 
+
 Occorre segnarsi l'indirizzo IP pubblico dell'istanza ed avere accesso alla console di controllo.
 Inoltre occorre avere l'accesso _ssh_ remoto, normalmente viene utilizzato una chiave pubblica fornita in fase di creazione dell'istanza.
 
