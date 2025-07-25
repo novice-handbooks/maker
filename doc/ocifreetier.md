@@ -35,7 +35,7 @@ I servizi _Always Free_ sono:
     - Console SQL Web inclusa
 
 - **🌐 Networking**
-  - 10 TB al mese di traffico in uscita (verso Internet)
+  - 10 TB al mese di traffico in uscita (verso internet)
   - IP pubblico statico gratuito per le istanze compute
   - VCN, subnet, firewall, route table, DNS
 
@@ -75,7 +75,7 @@ I prerequisiti sono:
 - Aver accettato il contratto per le istanze Arm (lo chiede al primo avvio)
 
 Quando creiamo un account OCI di prova gratuito, per impostazione predefinita verranno creati
-un tenant, un compartimento radice, una rete cloud virtuale (VCN) e un gateway Internet.
+un tenant, un compartimento radice, una rete cloud virtuale (VCN) e un gateway internet.
 
 ### 1. Creare una nuova instanza di calcolo
 
