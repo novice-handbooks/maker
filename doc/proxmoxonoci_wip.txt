@@ -1,3 +1,4 @@
+# WIP Proxmox on OCI
 
 ## Creare rete vmbr0 con DHCP & NAT
 
@@ -41,7 +42,7 @@ sysctl -p
 
 ### 3. `iptables` per configurare il NAT
 
-Scopri il nome dell'interfaccia di rete principale usando il comando `ip a` 
+Scopri il nome dell'interfaccia di rete principale usando il comando `ip a`
 oppure dalla schermata `Networks` usata precedentemente per creare la rete `vmbr0`
 
 Nel mio caso è `enp0s6` 
@@ -78,6 +79,7 @@ Per permettere alle VM o LXC di ricevere IP automatici dalla vmbr0 occorre insta
 ```bash
 apt install dnsmasq
 ```
+
 e configurarlo editando il file `/etc/dnsmasq.conf`
 
 ```ini
