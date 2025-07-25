@@ -1,28 +1,33 @@
 # M5Stack Core
 
-last edited on 2022-05-01
+[_documento editato il 2022-05-01_]
 
-M5Stack (<https://m5stack.com>) progetta e produce kit di sviluppo open-source, incluso hardware, piattaforma di programmazione e soluzioni IoT.
+M5Stack (<https://m5stack.com>) progetta e produce kit di sviluppo open-source, incluso hardware,
+piattaforma di programmazione e soluzioni IoT.
 
-In particolare questo documento si riferisce all'utilizzo della piattaforma M5Stack Core, che consiste in una famiglia di controllori basati
+In particolare questo documento si riferisce all'utilizzo della piattaforma M5Stack Core,
+che consiste in una famiglia di controllori basati
 su microcontrollori ESP32 e caratterizzata dalla costruzione modulare "stackabile".
 
 Le istruzioni che seguono sono testate personalmente sul modello [M5Stack Core FIRE](https://docs.m5stack.com/en/core/fire).
 
 ## Arduino IDE environment (su MacBook Pro M1 Pro)
 
-Ovviamente se riporto questi appunti significa che la guida ufficiale necessita di alcune personalizzazioni affinchè si riesca a far funzionare il tutto.
+Ovviamente se riporto questi appunti significa che la guida ufficiale necessita di alcune
+personalizzazioni affinchè si riesca a far funzionare il tutto.
 
-Partiamo dalla guida ufficiale: [Arduino IDE environment - M5Core](https://docs.m5stack.com/en/quick_start/m5core/arduino), e seguimo i seguenti passaggi:
+Partiamo dalla guida ufficiale: [Arduino IDE environment - M5Core](https://docs.m5stack.com/en/quick_start/m5core/arduino),
+e seguiamo i seguenti passaggi:
 
 1. Istallazione del driver USB, selezionando `CP210x_VCP_MacOS`, l'altro driver nel mio caso non è stato necessario
 
-2. Scaricare l'IDE Arduino: pur volendo utilizzare la nuova versione 2.0 è necessario installare anche la versione precedente in quanto solo
+2. Scaricare l'IDE Arduino: pur volendo utilizzare la nuova versione 2.0 è necessario
+   installare anche la versione precedente in quanto solo
    su questa sembra funzionare l'installazione dei dispositivi e delle librerie necessarie.
    Quindi scaricare sia la versione `Arduino IDE 1.8.x` che la versione `Arduino IDE 2.0 RC` dal [sito ufficiale](https://www.arduino.cc/en/software).
 
-3. Installare entrambe le versioni di _Arduino IDE_, io personalmente le ho installate nella cartella `~/Applications` dell'utente e non nella cartella
-   globale.
+3. Installare entrambe le versioni di _Arduino IDE_, io personalmente le ho installate nella
+   cartella `~/Applications` dell'utente e non nella cartella globale.
 
 4. Eseguire la **versione 1.8.x** e, seguendo le istruzioni copiare tra gli _URL per la gestione di schede addizionali_:
 
