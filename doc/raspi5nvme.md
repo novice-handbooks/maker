@@ -1,5 +1,7 @@
 # Raspberry Pi 5 con SSD NVMe
 
+[_documento editato il 2024-08-30_]
+
 Sono qui raccolte le operazione seguite per la preparazione del mio Homelab su base Raspberry Pi 5.
 
 Materiali utilizzati:

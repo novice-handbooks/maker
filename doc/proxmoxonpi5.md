@@ -1,5 +1,7 @@
 # Installa Proxmox 8 su Rasperry Pi 5
 
+[_documento editato il 2025-02-24_]
+
 Normalmente Proxmox viene installato tramite immagine dedicata. Non essendo prevista ancora una immagine
 ufficiale dedicata al Rapberry Pi 5, si procede con l'installazione nativa su Raspberry OS.
 
@@ -320,7 +322,6 @@ systemctl status media-wdbackup.mount
 ```
 
 Sono possibili anche tutti i comandi disponibili con `systemctl` come `start`, `stop`, `restart` ...
-
 
 ### 7. condividere cartelle o mount da Proxmox host verso CT
 
