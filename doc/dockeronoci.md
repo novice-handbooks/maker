@@ -105,7 +105,8 @@ Ora parte automaticamente la creazione dell'istanza, che può richiedere qualche
 Al termine, selezionare dal menù _Instances_ l'istanza appena creata e dal tab _Details_
 si può vedere l'indirizzo IP pubblico assegnato all'istanza e lo username.
 
-Possiamo ora provare a connetterci tramite SSH alla'istanza utilizzando l'indirizzo IP pubblico e lo username `ubuntu` e la chiave SSH precedentemente inserita.
+Possiamo ora provare a connetterci tramite SSH alla'istanza utilizzando l'indirizzo IP pubblico
+e lo username `ubuntu` e la chiave SSH precedentemente inserita.
 
 ```shell
 ssh -i [path/to/your/private/key] ubuntu@[public.ip.address]
@@ -114,7 +115,6 @@ ssh -i [path/to/your/private/key] ubuntu@[public.ip.address]
 Se tutto è andato a buon fine si dovrebbe essere connessi all'istanza.
 
 ![ssh-docker-oci](images/ssh-docker-oci.png)
-
 
 Ora occorre assicurarsi di avere settato il firewall per permettere al traffico internet di raggiungere l'istanza.
 
@@ -126,3 +126,79 @@ cd /boot/efi
 wget https://boot.netboot.xyz/ipxe/netboot.xyz-arm64.efi
 ```
 
+## Configurare Ubuntu
+
+Ora che l'istanza è pronta, possiamo procedere con la configurazione di Ubuntu per l'utilizzo di Docker.
+
+### Aggiornare il sistema
+
+La prima cosa da fare è aggiornare il sistema operativo all'ultima versione disponibile.
+
+```shell
+sudo apt update && sudo apt upgrade -y
+```
+
+Al termine dell'aggiornamento, è consigliabile riavviare l'istanza per assicurarsi che tutte le modifiche abbiano effetto.
+
+```shell
+sudo reboot
+```
+
+### Installare Docker
+
+Per installare Docker su Ubuntu, occorre predisporre il sistema con i certificati e il repository ufficiale di Docker.
+
+```shell
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+```
+
+A questo punto è possibile effettuare l'installazione:
+
+```shell
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+#### Abilitare utente corrente per l'utilizzo di Docker
+
+Per poter utilizzare Docker senza dover utilizzare il comando `sudo`, è necessario aggiungere l'utente corrente al gruppo `docker`.
+
+```shell
+sudo usermod -aG docker $USER
+```
+
+Dopo aver eseguito questo comando, è necessario disconnettersi e riconnettersi per applicare le modifiche.  
+Per verificare che tutto funzioni correttamente, è possibile eseguire il comando:
+
+```shell
+docker run hello-world
+```
+
+Se tutto è andato a buon fine, si dovrebbe vedere un messaggio di benvenuto da parte di Docker.
+
+### Ripulire il sistema
+
+Iniziamo ripulendo docker:
+
+```shell
+docker system prune -a --volumes
+```
+
+Proseguiamo ora con la pulizia del sistema:
+
+```shell
+sudo apt autoremove --purge -y
+sudo apt clean
+sudo rm -rf /var/lib/apt/lists/*
+```
