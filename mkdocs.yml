@@ -90,14 +90,16 @@ markdown_extensions:
 nav:
   - Home: index.md
   - M5Stack CORE Fire: 
-    - Programmazione scheda con Arduino IDE: m5stack.md
+      - Programmazione scheda con Arduino IDE: m5stack.md
   - Raspberry Pi:
-    - Installazione Raspberry Pi: RaspberryPI.md
-    - Home Assistenat su Raspberry Pi: homeassistant.md
-    - Raspberry Pi 5 con NVMe: raspi5nvme.md
-    - Installa Proxmox su Raspberry Pi OS: proxmoxonpi5.md
+      - Installazione Raspberry Pi: RaspberryPI.md
+      - Home Assistenat su Raspberry Pi: homeassistant.md
+      - Raspberry Pi 5 con NVMe: raspi5nvme.md
+      - Installa Proxmox su Raspberry Pi OS: proxmoxonpi5.md
   - Homelab & Homeserver:
-    - Installazione e configurazione server Pi-hole su Proxmox VE: pihole.md
+      - Installazione e configurazione server Pi-hole su Proxmox VE: pihole.md
   - Servizi cloud:
-    - Oracle Cloud Interface OCI free tier: ocifreetier.md
-    - Installa Proxmox VE 8 su Oracle OCI (free tier): proxmoxonoci.md
+      - Oracle Cloud Interface OCI free tier: ocifreetier.md
+      - Installa Proxmox VE 8 su Oracle OCI (free tier): proxmoxonoci.md
+      - Installa Docker su Oracle OCI (free tier): dockeronoci.md
+      - Pubblicare l'accesso SSH tramite Cloudflare Tunnel: cloudflaressh.md

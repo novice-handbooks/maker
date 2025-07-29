@@ -1,5 +1,13 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "DavidAnson.vscode-markdownlint",
+        "mhutchie.git-graph"
+      ]
+    }
   }
 }

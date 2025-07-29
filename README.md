@@ -1,16 +1,12 @@
 # maker
 
-Documentazione varia su schede elettroniche e la loro programmazione
+Questa repository raccoglie appunti, guide e procedure operative relative a:
 
-## Raspberry PI
+- Sviluppo e programmazione di schede elettroniche (es. M5Stack, Raspberry Pi)
+- Configurazione di sistemi embedded, server domestici e servizi cloud (Proxmox, Pi-hole, Home Assistant, Oracle Cloud, ecc.)
+- Esperienze pratiche di installazione, troubleshooting e automazione
 
-- [Installazione Raspberry PI](doc/RaspberryPI.md) [documentazione in parte obsoleta]
+La raccolta nasce come riferimento personale, ma può risultare utile anche ad altri maker,
+hobbisti o chiunque sia interessato a sperimentare con hardware e software open source.
 
-Avete a disposizione un nuovo Raspberry Pi 5 con adattatore M.2 per memoria nNVE, allora le guide che seguono sono per voi:
-
-- [Raspberry Pi 5 con SSD NVMe](doc/raspi5nvme.md)
-- [Installa Proxmox su Raspberry Pi 5](doc/proxmoxonpi5.md)
-
-## M5Stack CORE Fire
-
-- [Programmazione scheda con Arduino IDE](doc/m5stack.md)
+Consulta la documentazione nella cartella `doc/` o naviga la versione web su [GitHub Pages](https://novice-handbooks.github.io/maker).
