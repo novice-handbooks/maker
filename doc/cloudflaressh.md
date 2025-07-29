@@ -141,4 +141,4 @@ Se tutto è andato a buon fine, dovresti vedere il terminale SSH della tua istan
 ![oci cloudflare ssh terminal](images/oci-cf-ssh-terminal.png)
 
 Questa procedura ti permette di accedere in modo sicuro e protetto al terminale della tua istanza tramite browser,
-senza esporre direttamente la porta SSH su Internet.
+senza esporre direttamente la porta SSH su internet.
