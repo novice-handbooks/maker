@@ -105,3 +105,5 @@ personale che come base per futuri progetti o ambienti di test.
 
 - [Oracle Cloud Interface OCI free tier](ocifreetier.md)
 - [Installa Proxmox VE 8 su Oracle OCI (free tier)](proxmoxonoci.md)
+- [Installa Docker su Oracle OCI (free tier)](dockeronoci.md)
+- [Pubblicare l'accesso SSH tramite Cloudflare Tunnel (con autenticazione Cloudflare)](cloudflaressh.md)

@@ -144,6 +144,17 @@ Al termine dell'aggiornamento, è consigliabile riavviare l'istanza per assicura
 sudo reboot
 ```
 
+### Creare una password per l'utente `ubuntu`
+
+La password non è richiesta per l'utente `ubuntu` ma è consigliabile impostarla per poter utilizzare
+la console messa a disposizione da OCI.
+
+```shell
+sudo passwd ubuntu
+```
+
+Alla richiesta inserire una password sicura e confermarla.
+
 ### Installare Docker
 
 Per installare Docker su Ubuntu, occorre predisporre il sistema con i certificati e il repository ufficiale di Docker.
@@ -202,3 +213,9 @@ sudo apt autoremove --purge -y
 sudo apt clean
 sudo rm -rf /var/lib/apt/lists/*
 ```
+
+### Altre ulteriori configurazioni opzionali
+
+Di seguito alcune configurazioni opzionali che possono essere utili:
+
+- [Pubblicare la porta SSH per l'accesso remoto tramite Cloudflare Tunnel](cloudflaressh.md)

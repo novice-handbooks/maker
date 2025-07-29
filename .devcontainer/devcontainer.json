@@ -5,7 +5,8 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "DavidAnson.vscode-markdownlint"
+        "DavidAnson.vscode-markdownlint",
+        "mhutchie.git-graph"
       ]
     }
   }
