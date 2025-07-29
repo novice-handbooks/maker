@@ -1,0 +1,1041 @@
+
+<!doctype html>
+<html lang="it" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Collection of FAQ for Electronic Makers">
+      
+      
+        <meta name="author" content="Alessandro Varesi">
+      
+      
+        <link rel="canonical" href="https://novice-handbooks.github.io/maker/homeassistant/">
+      
+      
+        <link rel="prev" href="../RaspberryPI/">
+      
+      
+        <link rel="next" href="../raspi5nvme/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Home Assistenat su Raspberry Pi - Alv67 Maker FAQ</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#home-assistant-su-raspberry-pi" class="md-skip">
+          Vai al contenuto
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Intestazione">
+    <a href=".." title="Alv67 Maker FAQ" class="md-header__button md-logo" aria-label="Alv67 Maker FAQ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Alv67 Maker FAQ
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home Assistenat su Raspberry Pi
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cerca" placeholder="Cerca" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cerca">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Cancella" aria-label="Cancella" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inizializza la ricerca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/novice-handbooks/maker" title="Apri repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    novice-handbooks/maker
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigazione" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Alv67 Maker FAQ" class="md-nav__button md-logo" aria-label="Alv67 Maker FAQ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Alv67 Maker FAQ
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/novice-handbooks/maker" title="Apri repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    novice-handbooks/maker
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    M5Stack CORE Fire
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            M5Stack CORE Fire
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../m5stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Programmazione scheda con Arduino IDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Raspberry Pi
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Raspberry Pi
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RaspberryPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installazione Raspberry Pi
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Home Assistenat su Raspberry Pi
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home Assistenat su Raspberry Pi
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Indice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Indice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installazione-del-bridgegateway-zigbee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installazione del BRIDGE/Gateway ZigBee
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installazione del BRIDGE/Gateway ZigBee">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zigbee-coordinator-antenna" class="md-nav__link">
+    <span class="md-ellipsis">
+      ZigBee Coordinator (antenna)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ZigBee Coordinator (antenna)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggiunta-di-ulteriori-porte-seriali" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aggiunta di ulteriori porte seriali
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installazione-del-modulo-conbee-ii" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installazione del modulo ConBee II
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instanziare-deconz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instanziare deCONZ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../raspi5nvme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Raspberry Pi 5 con NVMe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proxmoxonpi5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installa Proxmox su Raspberry Pi OS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Homelab & Homeserver
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Homelab & Homeserver
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pihole/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installazione e configurazione server Pi-hole su Proxmox VE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Servizi cloud
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Servizi cloud
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ocifreetier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Oracle Cloud Interface OCI free tier
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proxmoxonoci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installa Proxmox VE 8 su Oracle OCI (free tier)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dockeronoci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installa Docker su Oracle OCI (free tier)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudflaressh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pubblicare l'accesso SSH tramite Cloudflare Tunnel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Indice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Indice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installazione-del-bridgegateway-zigbee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installazione del BRIDGE/Gateway ZigBee
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installazione del BRIDGE/Gateway ZigBee">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zigbee-coordinator-antenna" class="md-nav__link">
+    <span class="md-ellipsis">
+      ZigBee Coordinator (antenna)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ZigBee Coordinator (antenna)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggiunta-di-ulteriori-porte-seriali" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aggiunta di ulteriori porte seriali
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installazione-del-modulo-conbee-ii" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installazione del modulo ConBee II
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instanziare-deconz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instanziare deCONZ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="home-assistant-su-raspberry-pi">Home Assistant su Raspberry Pi</h1>
+<p>[<em>documento editato il 2024-06-28</em>]</p>
+<p>Qui di seguito vengono riportate le procedure per l'installazione e la configurazione di un Hub personale per la domotica.</p>
+<p>A questo scopo si utilizzerà una scheda Raspberry Pi 3 opportunamente configurata,
+sulla quale viene installato l'applicativo <a href="https://www.home-assistant.io/">Home Assistant</a>.</p>
+<p>Come sito di riferimento per le procedure di installazione e configurazione si consiglia <a href="https://indomus.it/">InDomus</a>,
+una comunità dedicata alla domotica personale.</p>
+<h2 id="installazione-del-bridgegateway-zigbee">Installazione del BRIDGE/Gateway ZigBee</h2>
+<p>ZigBee, uno degli standard più adottati in domotica personale.</p>
+<p>Per poter gestire i dispositivi ZigBee occorre dotarsi di BRIDGE/Gateway che sono in grado di tradurre le letture ed
+i comandi ZigBee su un protocollo su base Ethernet.</p>
+<p>I vari produttori forniscono BRIDGE/Gateway che però sono limitati alla propria linea di prodotti.
+Quindi se si desidera utilizzare apparecchiature di differenti produttori ci si trova a
+dover installare gateway per ogni singolo produttore.</p>
+<p>Nel mio caso, ad esempio, ho in utilizzo componenti Xiami/Aqara (di cui possiedo anche un BRIDGE),
+ed ho anche dispositivi ZigBee prodotti da IKEA.</p>
+<p>Per non dovermi dotare di singoli BRIDGE delle varie marche, opto per la creazione di un Gateway/BRIDGE proprietario
+che è in grado di interfacciarsi con dispositivi ZigBee delle svariate marche.</p>
+<p>Tra le varie alternative, è il caso di <strong>deCONZ</strong>, oggetto della presente guida,
+componente software che consente per l’appunto di dotarsi gratuitamente di un BRIDGE/Gateway
+evoluto per la gestione della propria rete ZigBee: una volta installato, tale BRIDGE/Gateway
+espone delle API per instradare i messaggi da e per i componenti ZigBee tramite esso gestiti.</p>
+<h3 id="zigbee-coordinator-antenna">ZigBee Coordinator (antenna)</h3>
+<p>Per far funzionare il BRIDGE/Gateway occorre anche dotarsi di un dispositivo <em>ZigBee Coordinator (antenna)</em>.
+Io ho optato per un dispositivo USB molto consigliato dalla comunità : <a href="https://www.phoscon.de/en/conbee2">ConBee II</a></p>
+<p>Per quanto riguarda l'installazione di <strong>deCONZ</strong> ho optato per l'installazione in un <em>container docker</em>.</p>
+<blockquote>
+<p><strong>N.B.</strong> Si consiglia, di utilizzare delle <em>mini prolunghe USB</em> per collegare sulla porta USB del Raspberry Pi
+l'antenna ConBee. Questo per evitare più che accertate interferenze.</p>
+</blockquote>
+<h4 id="aggiunta-di-ulteriori-porte-seriali"><strong>Aggiunta di ulteriori porte seriali</strong></h4>
+<p>Dato che il Raspberry dispone di due porte seriali, ma una è disabilitata di default, installando l'antenna potrebbe
+smettere di funzionare il modulo Bluetooth o non essere riconosciuta l'antenna stessa.
+Per evitare ciò occorre effettuare una modifica al file <code>config.txt</code> presente nella root della scheda Micro SD.</p>
+<pre><code class="language-sh">sudo nano /boot/config.txt
+</code></pre>
+<p>La modifica da fare prevede l’aggiunta, in fondo al file, del seguente codice (avere cura di
+aggiungere una riga vuota dopo le due righe di codice):</p>
+<pre><code class="language-text">enable_uart=1
+dtoverlay=pi3-disable-bt
+</code></pre>
+<p>uscire e salvare (<code>Ctrl-X</code>, <code>Y</code>, <code>invio</code>), e infine spegnere il Raspberry Pi con:</p>
+<pre><code class="language-sh">sudo shutdown now
+</code></pre>
+<p>Completato lo <em>shutdown</em>, spegnere <strong>fisicamente</strong> l'unità per poi riaccenderla subito dopo.</p>
+<h4 id="installazione-del-modulo-conbee-ii"><strong>Installazione del modulo ConBee II</strong></h4>
+<p>Dopo aver inserito il modulo d'antenna su di una porta USB ed avvere riavviato il Raspberry Pi occorre effettuare
+<em>una verifica</em> per appurare che la porta logica sia stata assegnata all'antenna dal sistema operativo.</p>
+<p>Per fare questo prepariamo un semplice script per elencare le interfacce hardware in uso.</p>
+<p>Collegandosi al Raspberry tramite SSH creare lo script:</p>
+<pre><code class="language-sh">sudo nano ports.sh
+</code></pre>
+<p>e copiare all'interno dell'editor il seguente codice:</p>
+<pre><code class="language-bash">#!/bin/bash
+
+for sysdevpath in $(find /sys/bus/usb/devices/usb*/ -name dev); do
+    (
+        syspath=&quot;${sysdevpath%/dev}&quot;
+        devname=&quot;$(udevadm info -q name -p $syspath)&quot;
+        [[ &quot;$devname&quot; == &quot;bus/&quot;* ]]
+        eval &quot;$(udevadm info -q property --export -p $syspath)&quot;
+        [[ -z &quot;$ID_SERIAL&quot; ]]
+        echo &quot;/dev/$devname - $ID_SERIAL&quot;
+    )
+done
+</code></pre>
+<p>uscire e salvare (<code>Ctrl-X</code>, <code>Y</code>, <code>invio</code>).
+Eseguire poi i comandi:</p>
+<pre><code class="language-sh">sudo chmod 777 ports.sh
+./ports.sh
+</code></pre>
+<p>A questo punto lo script è eseguito ottenendo un output simile al seguente:</p>
+<pre><code class="language-sh">/dev/bus/usb/001/001 - Linux_6.1.21-v8+_dwc_otg_hcd_DWC_OTG_Controller_3f980000.usb
+/dev/bus/usb/001/003 - 0424_ec00
+/dev/bus/usb/001/002 - 0424_9514
+/dev/ttyACM0 - dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2685810
+/dev/bus/usb/001/005 - dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2685810
+</code></pre>
+<p>Questo elenco riporta tutte le interfacce allocate. La prima parte è l’allocazione logica assegnata dal sistema operativo
+(eg. /dev/bus/usb/001/001) mentre la seconda l’etichetta descrittiva del device.</p>
+<p>Ovviamente bisognerà autonomamente capire quale sia quella che ci interessa utilizzare.</p>
+<blockquote>
+<p><strong>N.B.</strong>
+Nell’esempio di cui sopra si nota una duplicazione della voce “dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2685810“.
+Questo perché viene elencato sia l’indirizzo della porta al quale è fisicamente connesso il device
+USB (/dev/bus/usb/001/005) sia l’indirizzo alias logico (/dev/ttyACM0).
+Si consiglia di utilizzare sempre quest’ultimo tipo di indirizzamento piuttosto che il primo, e il motivo è semplice:
+in caso di cambio di porta, l’alias logico non cambia mai, evitando quindi problemi di configurazione
+sui software che utilizzino i device in questione.</p>
+</blockquote>
+<h3 id="instanziare-deconz">Instanziare deCONZ</h3>
+<p>Prerequisito principale è avere installato <code>docker</code> sul Raspberry Pi.</p>
+<p>Si sceglie di utilizzare <code>docker compose</code> in tal modo tutta la configurazione viene registrata all'interno del file
+<code>docker-compose.yaml</code> assieme agli altri container definiti (ad esempio il container di Home Asssistant).</p>
+<p>Al file <code>docker-compose.yaml</code> aggiungere la seguente configurazione (sotto il blocco <em>services</em>):</p>
+<pre><code class="language-yaml">deconz:
+    container_name: deconz
+    image: deconzcommunity/deconz
+    volumes:
+    - &quot;/opt/deconz:/root/.local/share/dresden-elektronik/deCONZ&quot;
+    devices:
+    - &quot;/dev/ttyXXX&quot;
+    environment:
+    - &quot;TZ=Europe/Rome&quot;
+    - &quot;DECONZ_WEB_PORT=40850&quot;
+    - &quot;DECONZ_VNC_MODE=1&quot;
+    - &quot;DECONZ_VNC_PORT=40851&quot;
+    - &quot;DECONZ_VNC_PASSWORD=mia_password&quot;
+    network_mode: host
+    restart: always
+</code></pre>
+<p>dove ovviamente nel campo <code>devices</code> occorre indicare la porta precedentemente identificata (nell'esempio precedente <code>ttyACM0</code>)</p>
+<p>Una volta salvato il file eseguire il comando:</p>
+<pre><code class="language-sh">docker compose up -d deconz
+</code></pre>
+<p>Lanciato il comando, attendere il completamente del primo avvio. Ci potrebbe volere un po’:
+per leggere in tempo reale i log e verificare quindi cosa stia succedendo all’interno del container, eseguire il comando:</p>
+<pre><code class="language-sh">docker container logs deconz -f
+</code></pre>
+<p>in fondo al log dovremmo trovare qualcosa come:</p>
+<pre><code class="language-text">[deconzcommunity/deconz] Starting deCONZ...
+[deconzcommunity/deconz] Current deCONZ version: x.xx.xx
+[deconzcommunity/deconz] Web UI port: 40850
+[deconzcommunity/deconz] Websockets port: 443
+[deconzcommunity/deconz] VNC port: 40851
+</code></pre>
+<p>Congratulazioni: deCONZ è ora operativo.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Alessandro Varesi
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copiato", "clipboard.copy": "Copia", "search.result.more.one": "1 altro in questa pagina", "search.result.more.other": "# altri in questa pagina", "search.result.none": "Nessun documento trovato", "search.result.one": "1 documento trovato", "search.result.other": "# documenti trovati", "search.result.placeholder": "Scrivi per iniziare a cercare", "search.result.term.missing": "Non presente", "select.version": "Seleziona la versione"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>

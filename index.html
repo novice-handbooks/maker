@@ -1,0 +1,1121 @@
+
+<!doctype html>
+<html lang="it" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Collection of FAQ for Electronic Makers">
+      
+      
+        <meta name="author" content="Alessandro Varesi">
+      
+      
+        <link rel="canonical" href="https://novice-handbooks.github.io/maker/">
+      
+      
+      
+        <link rel="next" href="m5stack/">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Alv67 Maker FAQ</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#alv67-electronic-makers-faq" class="md-skip">
+          Vai al contenuto
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Intestazione">
+    <a href="." title="Alv67 Maker FAQ" class="md-header__button md-logo" aria-label="Alv67 Maker FAQ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Alv67 Maker FAQ
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cerca" placeholder="Cerca" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cerca">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Cancella" aria-label="Cancella" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inizializza la ricerca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/novice-handbooks/maker" title="Apri repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    novice-handbooks/maker
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigazione" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Alv67 Maker FAQ" class="md-nav__button md-logo" aria-label="Alv67 Maker FAQ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Alv67 Maker FAQ
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/novice-handbooks/maker" title="Apri repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    novice-handbooks/maker
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Indice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Indice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#m5stack-core-fire" class="md-nav__link">
+    <span class="md-ellipsis">
+      M5Stack CORE Fire
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="M5Stack CORE Fire">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caratteristiche-comuni" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Caratteristiche comuni
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-miei-appunti" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗒️ I miei appunti
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raspberry PI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Raspberry PI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caratteristiche-principali-raspberry-pi-45-modello-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Caratteristiche principali (Raspberry Pi 4/5, modello standard)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-miei-appunti_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗒️ I miei appunti
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homelab-homeserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      Homelab &amp; Homeserver
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Homelab &amp; Homeserver">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i-miei-appunti_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗒️ I miei appunti
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#servizi-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Servizi cloud
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Servizi cloud">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i-miei-appunti_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗒️ I miei appunti
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    M5Stack CORE Fire
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            M5Stack CORE Fire
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="m5stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Programmazione scheda con Arduino IDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Raspberry Pi
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Raspberry Pi
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RaspberryPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installazione Raspberry Pi
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homeassistant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home Assistenat su Raspberry Pi
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="raspi5nvme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Raspberry Pi 5 con NVMe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="proxmoxonpi5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installa Proxmox su Raspberry Pi OS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Homelab & Homeserver
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Homelab & Homeserver
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pihole/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installazione e configurazione server Pi-hole su Proxmox VE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Servizi cloud
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Servizi cloud
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ocifreetier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Oracle Cloud Interface OCI free tier
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="proxmoxonoci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installa Proxmox VE 8 su Oracle OCI (free tier)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dockeronoci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installa Docker su Oracle OCI (free tier)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cloudflaressh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pubblicare l'accesso SSH tramite Cloudflare Tunnel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Indice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Indice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#m5stack-core-fire" class="md-nav__link">
+    <span class="md-ellipsis">
+      M5Stack CORE Fire
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="M5Stack CORE Fire">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caratteristiche-comuni" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Caratteristiche comuni
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-miei-appunti" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗒️ I miei appunti
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raspberry PI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Raspberry PI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caratteristiche-principali-raspberry-pi-45-modello-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Caratteristiche principali (Raspberry Pi 4/5, modello standard)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-miei-appunti_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗒️ I miei appunti
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homelab-homeserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      Homelab &amp; Homeserver
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Homelab &amp; Homeserver">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i-miei-appunti_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗒️ I miei appunti
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#servizi-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Servizi cloud
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Servizi cloud">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i-miei-appunti_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗒️ I miei appunti
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="alv67-electronic-makers-faq">Alv67 Electronic Maker's FAQ</h1>
+<p>Raccolta di appunti personali su:</p>
+<ul>
+<li>schede elettroniche e la loro programmazione</li>
+<li>predisposizione ed installazione di un prorpio Homeserver e vari servizi collegati</li>
+<li>utilizzo di servizi cloud (per lo più gratuiti)</li>
+</ul>
+<h2 id="m5stack-core-fire">M5Stack CORE Fire</h2>
+<p>M5Stack Core è una serie di microcontrollori modulari e compatti basati principalmente su ESP32,
+progettati per rendere lo sviluppo di dispositivi IoT, interfacce utente e prototipi elettronici semplice e veloce.
+È prodotta dalla società M5Stack e fa parte dell’ecosistema Core Series</p>
+<h3 id="caratteristiche-comuni">🔧 Caratteristiche comuni</h3>
+<ul>
+<li>ESP32: MCU potente con Wi-Fi + Bluetooth integrati.</li>
+<li>Display integrato: tipicamente 320x240 pixel.</li>
+<li>Slot per moduli: compatibilità con moduli, unità e accessori M5Stack, grazie a connettori standard (Grove, BUS, etc).</li>
+<li>Batteria LiPo: integrata e ricaricabile via USB.</li>
+<li>Case modulare: impilabile per aggiungere moduli GPS, batterie, sensori, relè, ecc.</li>
+</ul>
+<h3 id="i-miei-appunti">🗒️ I miei appunti</h3>
+<ul>
+<li><a href="m5stack/">Programmazione scheda con Arduino IDE</a></li>
+</ul>
+<h2 id="raspberry-pi">Raspberry PI</h2>
+<p>La Raspberry Pi è una single-board computer (SBC) a basso costo e di piccole dimensioni,
+sviluppata dalla Raspberry Pi Foundation con lo scopo di promuovere l’insegnamento dell’informatica e della programmazione,
+ma oggi ampiamente usata anche in progetti industriali, domotici e maker.</p>
+<p>È un mini computer completo, che può essere collegato a un monitor,
+tastiera e mouse ed eseguire sistemi operativi basati su Linux (come Raspberry Pi OS)
+o anche Windows IoT.
+Offre una vasta gamma di porte di espansione per l’elettronica e la robotica.</p>
+<h3 id="caratteristiche-principali-raspberry-pi-45-modello-standard">🔧 Caratteristiche principali (Raspberry Pi 4/5, modello standard)</h3>
+<ul>
+<li>Processore: Quad-core o superiori (es. ARM Cortex-A72 o Cortex-A76).</li>
+<li>RAM: da 1 GB fino a 8 GB (LPDDR4 o LPDDR4X).</li>
+<li>Storage: microSD card o SSD tramite USB/PCIe.</li>
+<li>Porte USB: 2x USB 2.0, 2x USB 3.0.</li>
+<li>HDMI: fino a 2 uscite micro-HDMI (4K supportato).</li>
+<li>Ethernet: fino a Gigabit.</li>
+<li>Wi-Fi + Bluetooth: integrati (a partire dalla Pi 3).</li>
+<li>GPIO: 40 pin per collegare componenti elettronici (LED, sensori, motori, ecc.).</li>
+<li>Alimentazione: tramite USB-C (5V 3A o più).</li>
+</ul>
+<h3 id="i-miei-appunti_1">🗒️ I miei appunti</h3>
+<ul>
+<li><a href="RaspberryPI/">Installazione Raspberry Pi</a></li>
+<li><a href="homeassistant/">Home Assistant su Raspberry Pi</a></li>
+<li><a href="raspi5nvme/">Raspberry Pi 5 con NVMe</a></li>
+<li><a href="proxmoxonpi5/">Installa Proxmox su Raspberry Pi OS</a></li>
+</ul>
+<h2 id="homelab-homeserver">Homelab &amp; Homeserver</h2>
+<p>Un <em>HomeLab</em> (da home laboratory) è un ambiente di test, sperimentazione o apprendimento IT realizzato a casa.
+Può variare da un semplice Raspberry Pi fino a rack interi con server, switch, storage e firewall.</p>
+<p>✳️ Obiettivi principali:</p>
+<ul>
+<li>Imparare sistemi operativi (Linux, Windows Server, BSD…)</li>
+<li>Sperimentare con virtualizzazione (es. Proxmox, VMware, Hyper-V)</li>
+<li>Gestire container (Docker, Kubernetes)</li>
+<li>Simulare ambienti enterprise</li>
+<li>Fare test prima di applicare soluzioni in produzione</li>
+<li>Imparare rete, sicurezza, DevOps, ecc.</li>
+</ul>
+<p>Un <em>HomeServer</em> è un server domestico usato per eseguire servizi utili nella vita di tutti i giorni.
+È spesso parte di un <em>HomeLab</em>, ma può anche esistere da solo con scopi pratici.</p>
+<p>📌 Funzioni tipiche di un <em>HomeServer</em>:</p>
+<ul>
+<li>File server / NAS: accesso remoto ai file, backup centralizzati</li>
+<li>Media server: Plex, Jellyfin, Emby</li>
+<li>Server web o app: per hosting personale</li>
+<li>Domotica: Home Assistant, MQTT, Zigbee2MQTT</li>
+<li>Pi-hole: blocco pubblicità e tracciamento a livello di rete</li>
+<li>VPN server: per accedere in sicurezza alla rete di casa</li>
+<li>Container e VM: per servizi isolati</li>
+<li>Git server, CI/CD, monitoraggio (Grafana, Prometheus)</li>
+</ul>
+<p>Come si può ben capire tra <em>Homelab</em> e <em>Homeserver</em> il passo e breve e la differenza è quasi solo filosofica.</p>
+<p>Per questo io faccio difficoltà a distinguere le due categorie, quindi gli appunti che seguono si adattano ad entrambe le categorie.</p>
+<h3 id="i-miei-appunti_2">🗒️ I miei appunti</h3>
+<ul>
+<li><a href="pihole/">Installazione e configurazione server Pi-hole su Proxmox VE</a></li>
+</ul>
+<h2 id="servizi-cloud">Servizi cloud</h2>
+<p>In questo paragrafo vengono raccolti appunti, esempi pratici e indicazioni relative
+all’utilizzo, creazione e configurazione di servizi cloud, con particolare attenzione alle
+offerte gratuitamente accessibili tramite i piani Free Tier messi a disposizione dai
+principali fornitori (come AWS, Google Cloud, Azure, Oracle Cloud e altri). L’obiettivo è
+documentare esperienze e procedure utili per sperimentare e apprendere le tecnologie cloud
+senza costi iniziali, esplorando servizi come macchine virtuali, database gestiti, storage,
+funzioni serverless, monitoraggio e altro. Questa raccolta può servire sia come riferimento
+personale che come base per futuri progetti o ambienti di test.</p>
+<h3 id="i-miei-appunti_3">🗒️ I miei appunti</h3>
+<ul>
+<li><a href="ocifreetier/">Oracle Cloud Interface OCI free tier</a></li>
+<li><a href="proxmoxonoci/">Installa Proxmox VE 8 su Oracle OCI (free tier)</a></li>
+<li><a href="dockeronoci/">Installa Docker su Oracle OCI (free tier)</a></li>
+<li><a href="cloudflaressh/">Pubblicare l'accesso SSH tramite Cloudflare Tunnel (con autenticazione Cloudflare)</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Alessandro Varesi
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copiato", "clipboard.copy": "Copia", "search.result.more.one": "1 altro in questa pagina", "search.result.more.other": "# altri in questa pagina", "search.result.none": "Nessun documento trovato", "search.result.one": "1 documento trovato", "search.result.other": "# documenti trovati", "search.result.placeholder": "Scrivi per iniziare a cercare", "search.result.term.missing": "Non presente", "select.version": "Seleziona la versione"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>
